@@ -79,15 +79,18 @@ class PromptHistoryApp:
                 .container-spacing {
                     margin-bottom: 10px;
                 }
-                .dataframe {
-                    background-color: white !important;
-                    color: black !important;
+                table {
+                    background-color: white;
+                    color: black;
+                    width: 100%;
+                    border-collapse: collapse;
                 }
-                .dataframe th {
-                    background-color: #4CAF50 !important;
-                    color: white !important;
-                    font-family: Arial, sans-serif !important;
-                    font-size: 16px !important;
+                table, th, td {
+                    border: 1px solid black;
+                }
+                th, td {
+                    padding: 10px;
+                    text-align: left;
                 }
                 </style>
                 """,
@@ -137,10 +140,9 @@ class PromptHistoryApp:
             if st.session_state.selected_success != "전체":
                 filtered_df = filtered_df[filtered_df['탈옥성공여부'] == st.session_state.selected_success]
 
-            # Streamlit 기본 테이블 렌더링
-            with col2:
-                st.markdown("<div class='chart-title'>Filtered Data</div>", unsafe_allow_html=True)
-                st.dataframe(filtered_df.style.set_table_styles(
+            # 데이터프레임 스타일링 함수
+            def style_dataframe(df):
+                return df.style.set_table_styles(
                     [{
                         'selector': 'th',
                         'props': [
@@ -151,19 +153,29 @@ class PromptHistoryApp:
                         ]
                     },
                     {
-                        'selector': 'td, th',
+                        'selector': 'td, th, .index_name, .row_heading',
                         'props': [
-                            ('border', '2px solid #4CAF50')
+                            ('border', '2px solid #4CAF50'),
+                            ('background-color', 'white'),
+                            ('color', 'black')
                         ]
                     }]
                 ).set_properties(**{
                     'background-color': 'white',
                     'color': 'black'
-                }))
+                })
+
+            # 스타일을 적용하여 데이터프레임을 HTML로 변환
+            styled_df = style_dataframe(filtered_df)
+
+            with col2:
+                st.markdown("<div class='chart-title'>Filtered Data</div>", unsafe_allow_html=True)
+                st.write(styled_df.to_html(), unsafe_allow_html=True)
 
 if __name__ == "__main__":
     app = PromptHistoryApp()
     app.run()
+
 
 
 
