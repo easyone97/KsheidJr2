@@ -152,7 +152,7 @@ class DashboardApp:
                                     'field': 'type',
                                     'type': 'nominal',
                                     'scale': {
-                                        'range': ['#FFB3B3', '#FFD9B3', '#FFFFB3', '#B3FFB3', '#B3D9FF', '#D9B3FF']
+                                        'range': ['#004457', '#007475', '#00C6B4', '#1EA47D', '#8BD276', '#F9F871']
                                     }
                                 },
                                 'tooltip': [{'field': 'type', 'type': 'nominal'}, {'field': 'total_count', 'type': 'quantitative'}]
@@ -177,7 +177,7 @@ class DashboardApp:
                                     'field': 'type',
                                     'type': 'nominal',
                                     'scale': {
-                                        'range': ['#FFB3B3', '#FFD9B3', '#FFFFB3', '#B3FFB3', '#B3D9FF', '#D9B3FF']
+                                        'range': ['#004457', '#007475', '#00C6B4', '#1EA47D', '#8BD276', '#F9F871']
                                     }
                                 },
                                 'tooltip': [{'field': 'type', 'type': 'nominal'}, {'field': 'success_rate', 'type': 'quantitative', 'format': '.1f'}]
