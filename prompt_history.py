@@ -79,6 +79,10 @@ class PromptHistoryApp:
                 .container-spacing {
                     margin-bottom: 10px;
                 }
+                .styled-dataframe th, .styled-dataframe td {
+                    background-color: white !important;
+                    color: black !important;
+                }
                 </style>
                 """,
                 unsafe_allow_html=True
@@ -127,8 +131,17 @@ class PromptHistoryApp:
             if st.session_state.selected_success != "전체":
                 filtered_df = filtered_df[filtered_df['탈옥성공여부'] == st.session_state.selected_success]
 
+            # 스타일을 적용하여 데이터프레임을 표시
+            styled_df = filtered_df.style.set_properties(**{
+                'background-color': 'white',
+                'color': 'black'
+            }).set_table_styles(
+                [{'selector': 'th', 'props': [('background-color', 'white'), ('color', 'black')]}]
+            )
+
             with col2:
-                st.dataframe(filtered_df, height=800)  # 높이를 800으로 설정
+                st.markdown("<div class='chart-title'>Filtered Data</div>", unsafe_allow_html=True)
+                st.markdown(styled_df.render(), unsafe_allow_html=True, height=800)
 
 if __name__ == "__main__":
     app = PromptHistoryApp()
