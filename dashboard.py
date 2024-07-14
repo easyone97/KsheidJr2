@@ -72,6 +72,11 @@ class DashboardApp:
                     font-weight: bold;
                     margin-bottom: 10px;
                 }
+                [data-testid=metric-container] {
+                    box-shadow: 0 0 4px #cccccc;
+                    padding: 10px;
+                }
+
                 </style>
                 """,
                 unsafe_allow_html=True
