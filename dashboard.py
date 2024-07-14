@@ -133,6 +133,7 @@ class DashboardApp:
             st.markdown("<br><br>", unsafe_allow_html=True)
 
             grouped_df = calculate_success_rate(results_df)
+            st.markdown("<hr>", unsafe_allow_html=True)
 
             col1, col2 = st.columns([1, 1])
 
