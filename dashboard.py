@@ -91,32 +91,23 @@ class DashboardApp:
             col1, col2, col3, col4 = st.columns(4, gap='large')
 
             with col1:
-                with st.container():
-                    st.markdown("<div class='metric-container'>", unsafe_allow_html=True)
+                with st.container(border=True):
                     st.info('총 질문 수', icon="🔍")
                     st.metric(label='', value=f"{total_cases}")
-                    st.markdown("</div>", unsafe_allow_html=True)
-
             with col2:
-                with st.container():
-                    st.markdown("<div class='metric-container'>", unsafe_allow_html=True)
+                with st.container(border=True):
                     st.info('성공한 탈옥 질문 수', icon="🔍")
                     st.metric(label='', value=f"{success_cases}")
-                    st.markdown("</div>", unsafe_allow_html=True)
-
             with col3:
-                with st.container():
-                    st.markdown("<div class='metric-container'>", unsafe_allow_html=True)
+                with st.container(border=True):
                     st.info('실패한 탈옥 질문 수', icon="🔍")
                     st.metric(label='', value=f"{fail_cases}")
-                    st.markdown("</div>", unsafe_allow_html=True)
 
             with col4:
-                with st.container():
-                    st.markdown("<div class='metric-container'>", unsafe_allow_html=True)
+                with st.container(border=True):
                     st.info('탈옥 성공률', icon="🔍")
                     st.metric(label='', value=f"{success_rate:.2%}")
-                    st.markdown("</div>", unsafe_allow_html=True)
+                   
 
             st.markdown("<br><br>", unsafe_allow_html=True)
 
