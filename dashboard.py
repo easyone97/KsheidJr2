@@ -105,7 +105,7 @@ class DashboardApp:
                 with st.container():
                     st.markdown("<div class='info-text'>총 질문 수</div>", unsafe_allow_html=True)
                     st.markdown("<div class='metric-wrapper'>", unsafe_allow_html=True)
-                    st.metric(label='Total_Cases', value=f"{total_cases}")
+                    st.metric(label='  Total_Cases', value=f"{total_cases}")
                     st.markdown("</div>", unsafe_allow_html=True)
 
             with col2:
