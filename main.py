@@ -9,7 +9,7 @@ import llm_security
 
 # Define the theme
 theme = {
-     primaryColor="#25646f"
+    primaryColor="#25646f"
     backgroundColor="#001929"
     secondaryBackgroundColor="#1b2c50"
     textColor="#ffffff"
