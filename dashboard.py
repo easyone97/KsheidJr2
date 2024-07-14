@@ -95,14 +95,24 @@ class DashboardApp:
             success_rate = success_cases / (success_cases + fail_cases) if (success_cases + fail_cases) > 0 else 0
 
             col1, col2, col3, col4 = st.columns(4,gap='large')
-            with col1:
+               with col1:
                 st.info('총 질문 수', icon="🔍")
-                st.metric(label = 'sum TZS', value= f"{total_cases:,.0f}")
-    
-            col2.markdown(f"<div class='highlight-box'><div class='highlight-title'>성공한 탈옥 질문 수</div><div class='highlight-value'>{success_cases}</div></div>", unsafe_allow_html=True)
-            col3.markdown(f"<div class='highlight-box'><div class='highlight-title'>실패한 탈옥 질문 수</div><div class='highlight-value'>{fail_cases}</div></div>", unsafe_allow_html=True)
-            col4.markdown(f"<div class='highlight-box'><div class='highlight-title'>탈옥 성공률</div><div class='highlight-value'>{success_rate:.2%}</div></div>", unsafe_allow_html=True)
+                st.metric(label='', value=f"{total_cases}")
+
+            with col2:
+                st.info('성공한 탈옥 질문 수', icon="🔍")
+                st.metric(label='', value=f"{success_cases}")
+
+            with col3:
+                st.info('실패한 탈옥 질문 수', icon="🔍")
+                st.metric(label='', value=f"{fail_cases}")
+
+            with col4:
+                st.info('탈옥 성공률', icon="🔍")
+                st.metric(label='', value=f"{success_rate:.2%}")
+
             st.markdown("<br><br>", unsafe_allow_html=True)
+          
 
             grouped_df = calculate_success_rate(results_df)
 
