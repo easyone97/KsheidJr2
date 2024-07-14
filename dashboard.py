@@ -96,20 +96,20 @@ class DashboardApp:
 
             col1, col2, col3, col4 = st.columns(4,gap='large')
                with col1:
-                st.info('총 질문 수', icon="🔍")
-                st.metric(label='', value=f"{total_cases}")
+                    st.info('총 질문 수', icon="🔍")
+                    st.metric(label='', value=f"{total_cases}")
 
-            with col2:
-                st.info('성공한 탈옥 질문 수', icon="🔍")
-                st.metric(label='', value=f"{success_cases}")
+                with col2:
+                    st.info('성공한 탈옥 질문 수', icon="🔍")
+                    st.metric(label='', value=f"{success_cases}")
 
-            with col3:
-                st.info('실패한 탈옥 질문 수', icon="🔍")
-                st.metric(label='', value=f"{fail_cases}")
+                with col3:
+                    st.info('실패한 탈옥 질문 수', icon="🔍")
+                    st.metric(label='', value=f"{fail_cases}")
 
-            with col4:
-                st.info('탈옥 성공률', icon="🔍")
-                st.metric(label='', value=f"{success_rate:.2%}")
+                with col4:
+                    st.info('탈옥 성공률', icon="🔍")
+                    st.metric(label='', value=f"{success_rate:.2%}")
 
             st.markdown("<br><br>", unsafe_allow_html=True)
           
