@@ -56,7 +56,7 @@ class PromptHistoryApp:
                     font-weight: bold;
                     color: white;
                     margin-bottom: 10px;
-                    background-color: #838383;
+                    background-color: #3D9DF333;
                     padding: 5px;
                     border-radius: 5px;
                 }
@@ -82,7 +82,7 @@ class PromptHistoryApp:
                 """,
                 unsafe_allow_html=True
             )
-            st.markdown("<h1 style='font-size: 2.5em; color: #000000;'>탈옥 프롬프트 내역</h1>", unsafe_allow_html=True)
+            st.markdown("<h1 style='font-size: 2.5em; color: #FFFFFF;'>탈옥 프롬프트 내역</h1>", unsafe_allow_html=True)
             st.markdown("<br><br>", unsafe_allow_html=True)
 
             if results_df.empty:
