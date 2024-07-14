@@ -109,7 +109,7 @@ class DashboardApp:
             col1, col2, col3, col4 = st.columns(4, gap='large')
 
             with col1:
-                with st.container():
+                with st.container(border=True):
                     st.markdown("<div class='info-text'>총 질문 수</div>", unsafe_allow_html=True)
                     st.markdown("<div class='metric-wrapper'>", unsafe_allow_html=True)
                     st.metric(label='  Total_Cases', value=f"{total_cases}")
