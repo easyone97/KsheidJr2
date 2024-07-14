@@ -79,18 +79,9 @@ class PromptHistoryApp:
                 .container-spacing {
                     margin-bottom: 10px;
                 }
-                table {
-                    background-color: white;
-                    color: black;
-                    width: 100%;
-                    border-collapse: collapse;
-                }
-                table, th, td {
-                    border: 1px solid black;
-                }
-                th, td {
-                    padding: 10px;
-                    text-align: left;
+                .css-1d391kg {
+                    background-color: white !important;
+                    color: black !important;
                 }
                 </style>
                 """,
@@ -141,13 +132,14 @@ class PromptHistoryApp:
                 filtered_df = filtered_df[filtered_df['탈옥성공여부'] == st.session_state.selected_success]
 
             with col2:
-                st.markdown("""
-                <style>
-                table {background-color: white;}
-                </style>
-                """, unsafe_allow_html=True)
-                st.dataframe(filtered_df, height=800)
-            
+                st.markdown("<div class='chart-title'>Filtered Data</div>", unsafe_allow_html=True)
+                st.dataframe(filtered_df.style.set_table_styles({
+                    '': {
+                        'selector': '',
+                        'props': [('background-color', 'white'), ('color', 'black')]
+                    }
+                }), height=800)  # 높이를 800으로 설정
+
 if __name__ == "__main__":
     app = PromptHistoryApp()
     app.run()
