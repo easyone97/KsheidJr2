@@ -75,6 +75,7 @@ class DashboardApp:
                     background-color: #3D9DF333;
                     font-size: 1.2em;
                     font-weight: bold;
+                    margin-left: 10px;
                     padding: 10px;
                     border-radius: 5px;
                 }
