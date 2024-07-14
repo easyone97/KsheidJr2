@@ -10,7 +10,7 @@ theme = {
     'txc_inactive': '#FFFFFF',
     'menu_background': '#25646F',
     'txc_active': '#ff0500',
-    'option_active': '#001929'
+    'option_active': '#EEEEEE'
 }
 
 # Initialize HydraApp with the theme
