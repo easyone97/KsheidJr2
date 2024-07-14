@@ -50,7 +50,7 @@ class DashboardApp:
                     font-weight: bold;
                 }
                 .highlight-box {
-                    background-color: ##25646F;
+                    background-color: #25646F;
                     padding: 10px;
                     border-radius: 5px;
                     width: 100%;
