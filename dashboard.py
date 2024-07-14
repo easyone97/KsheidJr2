@@ -66,18 +66,21 @@ class DashboardApp:
                     padding: 20px 10px;  /* Increase top and bottom padding */
                     border-radius: 5px;
                     text-align: left;
-                    font-size: 1.5em;
+                    font-size: 1.2em;
                     font-weight: bold;
                     margin-bottom: 10px;
                     width: 100%;
-
+                }
+                .info-text {
+                    font-size: 1.2em;
+                    font-weight: bold;
                 }
                 </style>
                 """,
                 unsafe_allow_html=True
             )
 
-            st.markdown("<h1 style='font-size: 2.5em; color: #FFFFFF;'>🚀 Jailbreak Verification Dashboard</h1>", unsafe_allow_html=True)
+            st.markdown("<h1 style='font-size: 2.5em; color: #000000;'>🚀 Jailbreak Verification Dashboard</h1>", unsafe_allow_html=True)
             st.markdown("<p style='font-size: 1.5em;'>당신의 LLM 탈옥 가능성을 확인해보세요!</p>", unsafe_allow_html=True)
             st.markdown("<br><br>", unsafe_allow_html=True)
 
@@ -93,23 +96,24 @@ class DashboardApp:
             col1, col2, col3, col4 = st.columns(4, gap='large')
 
             with col1:
-                with st.container(border=True):
-                    st.info('총 질문 수')
-                    st.metric(label = 'Total_Cases', value=f"{total_cases}")
+                with st.container():
+                    st.markdown("<p class='info-text'>총 질문 수</p>", unsafe_allow_html=True)
+                    st.metric(label='Total_Cases', value=f"{total_cases}")
+
             with col2:
-                with st.container(border=True):
-                    st.info('성공한 탈옥 질문 수')
+                with st.container():
+                    st.markdown("<p class='info-text'>성공한 탈옥 질문 수</p>", unsafe_allow_html=True)
                     st.metric(label='Success_Cases', value=f"{success_cases}")
+
             with col3:
-                with st.container(border=True):
-                    st.info('실패한 탈옥 질문 수')
+                with st.container():
+                    st.markdown("<p class='info-text'>실패한 탈옥 질문 수</p>", unsafe_allow_html=True)
                     st.metric(label='Fail_Cases', value=f"{fail_cases}")
 
             with col4:
-                with st.container(border=True):
-                    st.info('탈옥 성공률')
+                with st.container():
+                    st.markdown("<p class='info-text'>탈옥 성공률</p>", unsafe_allow_html=True)
                     st.metric(label='Success_Rate', value=f"{success_rate:.2%}")
-                   
 
             st.markdown("<br><br>", unsafe_allow_html=True)
 
@@ -118,9 +122,9 @@ class DashboardApp:
             col1, col2 = st.columns([1, 1])
 
             with col1:
-                container1 = col1.container(border=True)
+                container1 = col1.container()
                 with container1:
-                    st.markdown("<div class='chart-title'> 📈 Type별 데이터 비율</div>", unsafe_allow_html=True)
+                    st.markdown("<div class='chart-title'>Type별 데이터 비율</div>", unsafe_allow_html=True)
                     st.markdown("<br><br>", unsafe_allow_html=True)
                     if not grouped_df.empty:
                         pie_chart = {
@@ -141,9 +145,9 @@ class DashboardApp:
                         st.vega_lite_chart(pie_chart, use_container_width=True)
 
             with col2:
-                container2 = col2.container(border=True)
+                container2 = col2.container()
                 with container2:
-                    st.markdown("<div class='chart-title'> 📊 Type별 탈옥 성공률</div>", unsafe_allow_html=True)
+                    st.markdown("<div class='chart-title'>Type별 탈옥 성공률</div>", unsafe_allow_html=True)
                     st.markdown("<br><br>", unsafe_allow_html=True)
                     if not grouped_df.empty:
                         grouped_df['success_rate'] *= 100  # Convert to percentage
@@ -168,6 +172,7 @@ class DashboardApp:
 if __name__ == "__main__":
     app = DashboardApp()
     app.run()
+
 
 
 
