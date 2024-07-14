@@ -79,20 +79,18 @@ class PromptHistoryApp:
                 .container-spacing {
                     margin-bottom: 10px;
                 }
-                .dataframe table {
+                table {
                     background-color: white;
                     color: black;
                     width: 100%;
                     border-collapse: collapse;
                 }
-                .dataframe th, .dataframe td {
+                table, th, td {
                     border: 1px solid black;
                 }
-                .dataframe th {
-                    background-color: #4CAF50;
-                    color: white;
-                    font-family: Arial, sans-serif;
-                    font-size: 16px;
+                th, td {
+                    padding: 10px;
+                    text-align: left;
                 }
                 </style>
                 """,
@@ -157,7 +155,9 @@ class PromptHistoryApp:
                     {
                         'selector': 'td, th, .index_name, .row_heading',
                         'props': [
-                            ('border', '2px solid #4CAF50')
+                            ('border', '2px solid #4CAF50'),
+                            ('background-color', 'white'),
+                            ('color', 'black')
                         ]
                     }]
                 ).set_properties(**{
@@ -166,11 +166,11 @@ class PromptHistoryApp:
                 })
 
             # 스타일을 적용하여 데이터프레임을 HTML로 변환
-            styled_df = style_dataframe(filtered_df)
+            styled_df = style_dataframe(filtered_df).to_html()
 
             with col2:
                 st.markdown("<div class='chart-title'>Filtered Data</div>", unsafe_allow_html=True)
-                st.write(styled_df)  # 스타일링된 데이터프레임을 표시
+                st.write(styled_df, unsafe_allow_html=True)
 
 if __name__ == "__main__":
     app = PromptHistoryApp()
