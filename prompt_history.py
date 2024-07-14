@@ -154,7 +154,6 @@ class PromptHistoryApp:
             styled_df = style_dataframe(filtered_df)
 
             with col2:
-                st.markdown("<div class='chart-title'>Filtered Data</div>", unsafe_allow_html=True)
                 st.dataframe(styled_df, height=800)  # 높이를 800으로 설정
 
 if __name__ == "__main__":
