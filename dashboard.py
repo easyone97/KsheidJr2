@@ -63,13 +63,14 @@ class DashboardApp:
                 .chart-title {
                     background-color: #3D9DF333;
                     color: white;
-                    padding: 10px;
+                    padding: 20px 10px;  /* Increase top and bottom padding */
                     border-radius: 5px;
                     text-align: left;
                     font-size: 1.2em;
                     font-weight: bold;
                     margin-bottom: 10px;
                     width: 100%;
+
                 }
                 </style>
                 """,
