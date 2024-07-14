@@ -69,6 +69,7 @@ class DashboardApp:
                     font-size: 1.2em;
                     font-weight: bold;
                     margin-bottom: 10px;
+                    width: 150%;
                 }
                 </style>
                 """,
@@ -116,7 +117,7 @@ class DashboardApp:
             col1, col2 = st.columns([1, 1])
 
             with col1:
-                container1 = col1.container()
+                container1 = col1.container(border=True)
                 with container1:
                     st.markdown("<div class='chart-title'>Type별 데이터 비율</div>", unsafe_allow_html=True)
                     st.markdown("<br><br>", unsafe_allow_html=True)
@@ -139,7 +140,7 @@ class DashboardApp:
                         st.vega_lite_chart(pie_chart, use_container_width=True)
 
             with col2:
-                container2 = col2.container()
+                container2 = col2.container(border=True)
                 with container2:
                     st.markdown("<div class='chart-title'>Type별 탈옥 성공률</div>", unsafe_allow_html=True)
                     st.markdown("<br><br>", unsafe_allow_html=True)
