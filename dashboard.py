@@ -64,7 +64,7 @@ class DashboardApp:
                     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
                 }
                 .chart-title {
-                    background-color: #838383;
+                    background-color: #25646F;
                     color: white;
                     padding: 10px;
                     border-radius: 5px;
