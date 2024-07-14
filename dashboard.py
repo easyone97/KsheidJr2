@@ -87,9 +87,6 @@ class DashboardApp:
                 .st-emotion-cache-1xarl3l {
                     padding-left: 10px;
                 }
-                .st-emotion-cache-zr3cp7 {
-                    padding-left: 20px;
-                }
                 </style>
                 """,
                 unsafe_allow_html=True
