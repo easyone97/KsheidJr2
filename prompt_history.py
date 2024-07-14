@@ -147,7 +147,7 @@ class PromptHistoryApp:
                 'border': '1px solid black'
             }).set_table_styles(
                 [{'selector': 'th', 'props': [('background-color', 'white'), ('color', 'black'), ('border', '1px solid black')]}]
-            ).render()
+            ).to_html()
 
             with col2:
                 st.markdown("<div class='chart-title'>Filtered Data</div>", unsafe_allow_html=True)
@@ -156,7 +156,6 @@ class PromptHistoryApp:
 if __name__ == "__main__":
     app = PromptHistoryApp()
     app.run()
-
 
 
 
