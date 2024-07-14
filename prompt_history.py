@@ -71,6 +71,7 @@ class PromptHistoryApp:
                     justify-content: flex-end;
                     margin-top: 10px;
                     margin-bottom: 10px;
+                    margin-left: 10px;
                 }
                 .spacer {
                     margin-bottom: 10px;
