@@ -84,12 +84,11 @@ class DashboardApp:
                     padding: 10px;
                     border-radius: 5px;
                 }
-                .metric-wrapper {
-                    padding: 5% 20% 5% 10% !important;
-                }
                 .st-emotion-cache-1xarl3l {
-                padding-left: 10px;
-                
+                    padding-left: 10px;
+                }
+                .st-emotion-cache-zr3cp7 {
+                    padding-left: 10px;
                 }
                 </style>
                 """,
@@ -114,31 +113,22 @@ class DashboardApp:
             with col1:
                 with st.container(border=True):
                     st.markdown("<div class='info-text'>총 질문 수</div>", unsafe_allow_html=True)
-                    st.markdown("<div class='metric-wrapper'>", unsafe_allow_html=True)
                     st.metric(label='  Total_Cases', value=f"{total_cases}")
-                    st.markdown("</div>", unsafe_allow_html=True)
 
             with col2:
                 with st.container():
                     st.markdown("<div class='info-text'>성공한 탈옥 질문 수</div>", unsafe_allow_html=True)
-                    st.markdown("<div class='metric-wrapper'>", unsafe_allow_html=True)
                     st.metric(label='Success_Cases', value=f"{success_cases}")
-                    st.markdown("</div>", unsafe_allow_html=True)
 
             with col3:
                 with st.container():
                     st.markdown("<div class='info-text'>실패한 탈옥 질문 수</div>", unsafe_allow_html=True)
-                    st.markdown("<div class='metric-wrapper'>", unsafe_allow_html=True)
                     st.metric(label='Fail_Cases', value=f"{fail_cases}")
-                    st.markdown("</div>", unsafe_allow_html=True)
 
             with col4:
                 with st.container():
                     st.markdown("<div class='info-text'>탈옥 성공률</div>", unsafe_allow_html=True)
-                    st.markdown("<div class='metric-wrapper'>", unsafe_allow_html=True)
                     st.metric(label='Success_Rate', value=f"{success_rate:.2%}")
-                    st.markdown("</div>", unsafe_allow_html=True)
-
             st.markdown("<br><br>", unsafe_allow_html=True)
 
             grouped_df = calculate_success_rate(results_df)
