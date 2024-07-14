@@ -91,7 +91,11 @@ class DashboardApp:
             success_rate = success_cases / (success_cases + fail_cases) if (success_cases + fail_cases) > 0 else 0
 
             col1, col2, col3, col4 = st.columns(4)
-            col1.markdown(f"<div class='highlight-box'><div class='highlight-title'>총 질문 수</div><div class='highlight-value'>{total_cases}</div></div>", unsafe_allow_html=True)
+            with col1:
+
+            st.info('Total Investment', icon="🔍")
+            st.metric(label = 'sum TZS', value= f"{total_investment:,.0f}")
+    
             col2.markdown(f"<div class='highlight-box'><div class='highlight-title'>성공한 탈옥 질문 수</div><div class='highlight-value'>{success_cases}</div></div>", unsafe_allow_html=True)
             col3.markdown(f"<div class='highlight-box'><div class='highlight-title'>실패한 탈옥 질문 수</div><div class='highlight-value'>{fail_cases}</div></div>", unsafe_allow_html=True)
             col4.markdown(f"<div class='highlight-box'><div class='highlight-title'>탈옥 성공률</div><div class='highlight-value'>{success_rate:.2%}</div></div>", unsafe_allow_html=True)
