@@ -131,7 +131,7 @@ class PromptHistoryApp:
             def style_dataframe(df):
                 return df.style.set_table_styles(
                     [{
-                        'selector': 'th',
+                        'selector': 'th,.index_name, .row_heading',
                         'props': [
                             ('background-color', '#4CAF50'),
                             ('color', 'white'),
@@ -140,7 +140,7 @@ class PromptHistoryApp:
                         ]
                     },
                     {
-                        'selector': 'td, th,.index_name, .row_heading',
+                        'selector': 'td, th',
                         'props': [
                             ('border', '2px solid #4CAF50')
                         ]
