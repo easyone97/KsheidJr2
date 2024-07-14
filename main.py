@@ -69,7 +69,6 @@ if __name__ == '__main__':
             text-decoration: none;
         }
         .footer-author {
-            margin-left: 10px;
             margin-top: 10px;
         }
         .footer-version {
