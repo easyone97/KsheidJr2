@@ -21,7 +21,7 @@ class OWASPApp:
         st.markdown("""
             <style>
             .stDownloadButton > button {
-                background-color: #87CEEB;
+                background-color: #25646F;
                 color: white;
                 border: none;
                 padding: 8px 16px;
