@@ -143,7 +143,7 @@ class DashboardApp:
             with col2:
                 container2 = col2.container(border=True)
                 with container2:
-                    st.markdown("<div class='chart-title'>Type별 탈옥 성공률</div>", unsafe_allow_html=True)
+                    st.markdown("<div class='chart-title'><i class="bi bi-pie-chart"></i>Type별 탈옥 성공률</div>", unsafe_allow_html=True)
                     st.markdown("<br><br>", unsafe_allow_html=True)
                     if not grouped_df.empty:
                         grouped_df['success_rate'] *= 100  # Convert to percentage
