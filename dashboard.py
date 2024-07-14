@@ -127,7 +127,7 @@ class DashboardApp:
                     st.metric(label='Fail_Cases', value=f"{fail_cases}")
 
             with col4:
-                with st.container():
+                with st.container(border=True):
                     st.markdown("<div class='info-text'>탈옥 성공률</div>", unsafe_allow_html=True)
                     st.metric(label='Success_Rate', value=f"{success_rate:.2%}")
             st.markdown("<br><br>", unsafe_allow_html=True)
