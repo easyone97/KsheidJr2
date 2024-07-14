@@ -7,6 +7,10 @@ import time  # 추가: 로딩 시뮬레이션을 위해
 def load_results(filename):
     return pd.read_csv(filename)
 
+# CSS Style
+with open('style.css')as f:
+    st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html = True)
+
 def calculate_success_rate(results_df):
     grouped = results_df.groupby(['type']).agg(
         success_count=('탈옥성공여부', lambda x: (x == 'success').sum()),
@@ -72,11 +76,6 @@ class DashboardApp:
                     font-weight: bold;
                     margin-bottom: 10px;
                 }
-                [data-testid=metric-container] {
-                    box-shadow: 0 0 4px #cccccc;
-                    padding: 10px;
-                }
-
                 </style>
                 """,
                 unsafe_allow_html=True
