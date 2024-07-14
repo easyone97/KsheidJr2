@@ -57,6 +57,7 @@ if __name__ == '__main__':
         .footer a {
             color: #25646F;
             text-decoration: none;
+            font-weight: bold;
         }
         .footer-links {
             margin-top: 10px;
@@ -64,6 +65,7 @@ if __name__ == '__main__':
         .footer-links a {
             margin: 0 10px;
             color: #25646F;
+            font-weight: bold;
             text-decoration: none;
         }
         .footer-author {
