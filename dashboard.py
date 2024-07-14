@@ -1,6 +1,7 @@
 import pandas as pd
 import streamlit as st
 import time
+import os
 
 # 독립적인 함수로 분리하여 캐시 처리
 @st.cache_data
