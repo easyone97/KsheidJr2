@@ -15,92 +15,75 @@ if os.path.exists(css_file):
 else:
     st.write("CSS 파일을 찾을 수 없습니다. 기본 스타일을 사용합니다.")
 
-# 엑셀 파일 로드
-df = pd.read_excel('data.xlsx', sheet_name='Sheet1')
+# CSV 파일 로드
+csv_file = '/Downloadfile/final_result_test.csv'
+if os.path.exists(csv_file):
+    df = pd.read_csv(csv_file)
 
 # 함수 정의
 
 def HomePage():
     # 데이터프레임 출력
     with st.expander("🧭 My database"):
-        shwdata = st.multiselect('Filter:', df.columns, default=[])
+        shwdata = st.multiselect('Filter:', df.columns, default=df.columns)
         st.dataframe(df[shwdata], use_container_width=True)
 
     # 주요 지표 계산
-    total_investment = float(df['Investment'].sum())
-    investment_mode = float(df['Investment'].mode()[0])
-    investment_mean = float(df['Investment'].mean())
-    investment_median = float(df['Investment'].median())
-    rating = float(df['Rating'].sum())
+    total_questions = len(df)
+    success_count = df[df['탈옥성공여부'] == 'success'].shape[0]
+    fail_count = df[df['탈옥성공여부'] == 'fail'].shape[0]
+    success_rate = (success_count / total_questions) * 100
+    fail_rate = (fail_count / total_questions) * 100
 
     # 지표 출력
-    total1, total2, total3, total4, total5 = st.columns(5, gap='large')
+    total1, total2, total3, total4 = st.columns(4, gap='large')
     with total1:
-        st.info('Total Investment', icon="🔍")
-        st.metric(label='Sum TZS', value=f"{total_investment:,.0f}")
+        st.info('총 질문 수', icon="🔍")
+        st.metric(label='Total', value=total_questions)
     with total2:
-        st.info('Most frequently', icon="🔍")
-        st.metric(label='Mode TZS', value=f"{investment_mode:,.0f}")
+        st.info('성공 수', icon="🔍")
+        st.metric(label='Success', value=success_count)
     with total3:
-        st.info('Investment Average', icon="🔍")
-        st.metric(label='Mean TZS', value=f"{investment_mean:,.0f}")
+        st.info('실패 수', icon="🔍")
+        st.metric(label='Fail', value=fail_count)
     with total4:
-        st.info('Investment Median', icon="🔍")
-        st.metric(label='Median TZS', value=f"{investment_median:,.0f}")
-    with total5:
-        st.info('Ratings', icon="🔍")
-        st.metric(label='Rating', value=rating)
+        st.info('성공률', icon="🔍")
+        st.metric(label='Success Rate', value=f"{success_rate:.2f}%")
 
     st.markdown("""---""")
 
 def Graphs():
-    total_investments = int(df["Investment"].sum())
-    average_rating = round(df["Rating"].mean(), 1)
-    star_rating = ":star:" * int(round(average_rating, 0))
-    average_investment = round(df["Investment"].mean(), 2)
-
-    # 막대 그래프
-    investment_by_businessType = df.groupby(by=["BusinessType"]).count()[["Investment"]].sort_values(by="Investment")
-    fig_investment = px.bar(
-        investment_by_businessType,
-        x="Investment",
-        y=investment_by_businessType.index,
-        orientation="h",
-        title="Investment by Business Type",
-        color_discrete_sequence=["#0083B8"] * len(investment_by_businessType),
+    # 유형별 성공/실패 분포
+    type_success_fail = df.groupby(['type', '탈옥성공여부']).size().reset_index(name='counts')
+    fig_type_success_fail = px.bar(
+        type_success_fail,
+        x='type',
+        y='counts',
+        color='탈옥성공여부',
+        title="유형별 성공/실패 분포",
+        barmode='group',
         template="plotly_white"
     )
-    fig_investment.update_layout(
+    fig_type_success_fail.update_layout(
         plot_bgcolor="rgba(0,0,0,0)",
-        xaxis=(dict(showgrid=False))
+        xaxis=dict(showgrid=False)
     )
 
-    # 선 그래프
-    investment_by_state = df.groupby(by=["State"]).count()[["Investment"]]
-    fig_state = px.line(
-        investment_by_state,
-        x=investment_by_state.index,
-        y="Investment",
-        title="Investment by Region",
-        color_discrete_sequence=["#0083B8"] * len(investment_by_state),
-        template="plotly_white"
+    # 성공/실패 비율 파이 차트
+    success_fail_counts = df['탈옥성공여부'].value_counts().reset_index()
+    success_fail_counts.columns = ['탈옥성공여부', 'counts']
+    fig_success_fail_pie = px.pie(
+        success_fail_counts,
+        values='counts',
+        names='탈옥성공여부',
+        title='성공/실패 비율'
     )
-    fig_state.update_layout(
-        xaxis=dict(tickmode="linear"),
-        plot_bgcolor="rgba(0,0,0,0)",
-        yaxis=(dict(showgrid=False))
-    )
+    fig_success_fail_pie.update_layout(legend_title="탈옥성공여부", legend_y=0.9)
+    fig_success_fail_pie.update_traces(textinfo='percent+label', textposition='inside')
 
-    left_column, right_column, center = st.columns(3)
-    left_column.plotly_chart(fig_state, use_container_width=True)
-    right_column.plotly_chart(fig_investment, use_container_width=True)
-
-    # 파이 차트
-    with center:
-        fig = px.pie(df, values='Rating', names='State', title='Regions by Ratings')
-        fig.update_layout(legend_title="Regions", legend_y=0.9)
-        fig.update_traces(textinfo='percent+label', textposition='inside')
-        st.plotly_chart(fig, use_container_width=True)
+    left_column, right_column = st.columns(2)
+    left_column.plotly_chart(fig_type_success_fail, use_container_width=True)
+    right_column.plotly_chart(fig_success_fail_pie, use_container_width=True)
 
 def ProgressBar():
     st.markdown(
@@ -111,18 +94,18 @@ def ProgressBar():
         </style>""",
         unsafe_allow_html=True,
     )
-    target = 3000000000
-    current = df['Investment'].sum()
+    target = 3000  # 목표 값 (예시)
+    current = len(df)
     percent = round((current / target * 100))
     my_bar = st.progress(0)
 
     if percent > 100:
         st.subheader("Target 100% completed")
     else:
-        st.write(f"현재 {percent}% 달성 (목표: {target:,d} TZS)")
+        st.write(f"현재 {percent}% 달성 (목표: {target:,d} 질문)")
         for percent_complete in range(percent):
             time.sleep(0.1)
-            my_bar.progress(percent_complete + 1, text="Target percentage")
+            my_bar.progress(percent_complete + 1)
 
 # 메뉴 탭 구현
 selected_tab = st.sidebar.radio("메뉴 선택", ["Dashboard", "Progress", "Graphs"])
@@ -203,6 +186,9 @@ st.markdown(
     """,
     unsafe_allow_html=True
 )
+
+
+
 
 
 
