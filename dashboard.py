@@ -103,28 +103,28 @@ class DashboardApp:
 
              with col1:
                 with st.container():
-                    st.markdown("<div class='custom-info'>총 질문 수</div>", unsafe_allow_html=True)
+                    st.markdown("<div class='info-text'>총 질문 수</div>", unsafe_allow_html=True)
                     st.markdown("<div class='metric-wrapper'>", unsafe_allow_html=True)
                     st.metric(label='Total_Cases', value=f"{total_cases}")
                     st.markdown("</div>", unsafe_allow_html=True)
 
             with col2:
                 with st.container():
-                    st.markdown("<div class='custom-info'>성공한 탈옥 질문 수</div>", unsafe_allow_html=True)
+                    st.markdown("<div class='info-text'>성공한 탈옥 질문 수</div>", unsafe_allow_html=True)
                     st.markdown("<div class='metric-wrapper'>", unsafe_allow_html=True)
                     st.metric(label='Success_Cases', value=f"{success_cases}")
                     st.markdown("</div>", unsafe_allow_html=True)
 
             with col3:
                 with st.container():
-                    st.markdown("<div class='custom-info'>실패한 탈옥 질문 수</div>", unsafe_allow_html=True)
+                    st.markdown("<div class='info-text'>실패한 탈옥 질문 수</div>", unsafe_allow_html=True)
                     st.markdown("<div class='metric-wrapper'>", unsafe_allow_html=True)
                     st.metric(label='Fail_Cases', value=f"{fail_cases}")
                     st.markdown("</div>", unsafe_allow_html=True)
 
             with col4:
                 with st.container():
-                    st.markdown("<div class='custom-info'>탈옥 성공률</div>", unsafe_allow_html=True)
+                    st.markdown("<div class='info-text'>탈옥 성공률</div>", unsafe_allow_html=True)
                     st.markdown("<div class='metric-wrapper'>", unsafe_allow_html=True)
                     st.metric(label='Success_Rate', value=f"{success_rate:.2%}")
                     st.markdown("</div>", unsafe_allow_html=True)
