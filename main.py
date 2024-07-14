@@ -55,6 +55,7 @@ if __name__ == '__main__':
             width: 100%;
         }
         .footer a {
+            margin:10px;
             color: #25646F;
             text-decoration: none;
             font-weight: bold;
