@@ -56,6 +56,7 @@ class PromptHistoryApp:
                     font-weight: bold;
                     color: white;
                     margin-bottom: 10px;
+                    margin-left: 10px;
                     background-color: #3D9DF333;
                     padding: 5px;
                     border-radius: 5px;
