@@ -25,6 +25,12 @@ class DashboardApp:
     def run(self):
         # 로딩 공간을 유지하기 위한 placeholder 생성
         placeholder = st.empty()
+        css_file = 'style.css'
+        if os.path.exists(css_file):
+            with open(css_file) as f:
+                st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
+        else:
+            st.write("CSS 파일을 찾을 수 없습니다. 기본 스타일을 사용합니다.")
 
         with placeholder.container():
             st.markdown("<style>body {background-color: white;}</style>", unsafe_allow_html=True)
