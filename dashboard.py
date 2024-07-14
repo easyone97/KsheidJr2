@@ -61,7 +61,7 @@ class DashboardApp:
                     border-radius: 5px;
                 }
                 .chart-title {
-                    background-color: #838383;
+                    background-color: #1B2C50;
                     color: white;
                     padding: 10px;
                     border-radius: 5px;
