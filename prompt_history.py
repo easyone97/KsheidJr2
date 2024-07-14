@@ -148,7 +148,8 @@ class PromptHistoryApp:
                         ]
                     }]
                 ).set_properties(**{
-                    'background-color': '#808080',
+                    'background-color': '#FFFFFF',
+                    'bordor': 'black',
                     'color': 'black'
                 }), height=800, use_container_width=True)
 
