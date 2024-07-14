@@ -10,11 +10,10 @@ import llm_security
 # Define the theme
 st.code("""
 [theme]
-primaryColor="#F39C12"
-backgroundColor="#2E86C1"
-secondaryBackgroundColor="#AED6F1"
-textColor="#FFFFFF"
-font="monospace"
+primaryColor="#25646f"
+backgroundColor="#001929"
+secondaryBackgroundColor="#1b2c50"
+textColor="#ffffff"
 """)
 
 # Initialize HydraApp with the theme
