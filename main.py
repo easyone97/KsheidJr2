@@ -48,14 +48,14 @@ if __name__ == '__main__':
         }
         .footer {
             background-color: #25646F;
-            color: black;
+            color: white;
             text-align: center;
             padding: 10px;
             margin-top: auto; /* Ensure footer is pushed to the bottom */
             width: 100%;
         }
         .footer a {
-            color: #007BFF;
+            color: #25646F;
             text-decoration: none;
         }
         .footer-links {
@@ -63,7 +63,7 @@ if __name__ == '__main__':
         }
         .footer-links a {
             margin: 0 10px;
-            color: #007BFF;
+            color: #25646F;
             text-decoration: none;
         }
         .footer-author {
