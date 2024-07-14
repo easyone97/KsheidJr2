@@ -17,7 +17,7 @@ else:
     st.write("CSS 파일을 찾을 수 없습니다. 기본 스타일을 사용합니다.")
 
 # CSV 파일 로드
-csv_file = 'Downloadfile/final_result_test.csv'
+csv_file = 'data.csv'
 if os.path.exists(csv_file):
     df = pd.read_csv(csv_file)
 else:
@@ -38,6 +38,8 @@ def HomePage():
     # 데이터프레임 출력
     with st.expander("🧭 My database"):
         shwdata = st.multiselect('Filter:', df.columns, default=df.columns)
+        if not shwdata:
+            shwdata = df.columns
         st.dataframe(df[shwdata], use_container_width=True)
 
     # 주요 지표 계산
