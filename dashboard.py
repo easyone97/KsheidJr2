@@ -79,7 +79,7 @@ class DashboardApp:
                     border-radius: 5px;
                 }
                 .metric-wrapper {
-                    margin-left: 20px; /* Increase this value to adjust left margin */
+                    margin-left: 40px; /* Increase this value to adjust left margin */
                 }
                 </style>
                 """,
