@@ -151,11 +151,12 @@ class PromptHistoryApp:
                 ).set_properties(**{
                     'background-color': 'white',
                     'color': 'black'
-                }))
+                }), height=800, use_container_width=True)
 
 if __name__ == "__main__":
     app = PromptHistoryApp()
     app.run()
+
 
 
 
