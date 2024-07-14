@@ -7,9 +7,9 @@ import prompt_history
 import owasp
 import llm_security
 theme = {
-    'txc_inactive': 'white',
+    'txc_inactive': '3D9DF333',
     'menu_background': '#838383',
-    'txc_active': '#B67162',
+    'txc_active': '#FFFFFF',
     'option_active': '#EEEEEE'
 }
 
