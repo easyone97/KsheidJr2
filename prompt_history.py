@@ -79,11 +79,11 @@ class PromptHistoryApp:
                 .container-spacing {
                     margin-bottom: 10px;
                 }
-                .css-1a32fsj, .css-1a32fsj th, .css-1a32fsj td {
+                .dataframe {
                     background-color: white !important;
                     color: black !important;
                 }
-                .css-1a32fsj th {
+                .dataframe th {
                     background-color: #4CAF50 !important;
                     color: white !important;
                     font-family: Arial, sans-serif !important;
@@ -140,12 +140,30 @@ class PromptHistoryApp:
             # Streamlit 기본 테이블 렌더링
             with col2:
                 st.markdown("<div class='chart-title'>Filtered Data</div>", unsafe_allow_html=True)
-                st.dataframe(filtered_df)
+                st.dataframe(filtered_df.style.set_table_styles(
+                    [{
+                        'selector': 'th',
+                        'props': [
+                            ('background-color', '#4CAF50'),
+                            ('color', 'white'),
+                            ('font-family', 'Arial, sans-serif'),
+                            ('font-size', '16px')
+                        ]
+                    },
+                    {
+                        'selector': 'td, th',
+                        'props': [
+                            ('border', '2px solid #4CAF50')
+                        ]
+                    }]
+                ).set_properties(**{
+                    'background-color': 'white',
+                    'color': 'black'
+                }))
 
 if __name__ == "__main__":
     app = PromptHistoryApp()
     app.run()
-
 
 
 
