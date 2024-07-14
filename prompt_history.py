@@ -79,16 +79,6 @@ class PromptHistoryApp:
                 .container-spacing {
                     margin-bottom: 10px;
                 }
-                .dataframe {
-                    background-color: white !important;
-                    color: black !important;
-                }
-                .dataframe th {
-                    background-color: #4CAF50 !important;
-                    color: white !important;
-                    font-family: Arial, sans-serif !important;
-                    font-size: 16px !important;
-                }
                 </style>
                 """,
                 unsafe_allow_html=True
@@ -151,9 +141,11 @@ class PromptHistoryApp:
                         ]
                     },
                     {
-                        'selector': 'td, th',
+                        'selector': 'td, th, .row_heading, .index_name',
                         'props': [
-                            ('border', '2px solid #4CAF50')
+                            ('border', '2px solid #4CAF50'),
+                            ('background-color', 'white'),
+                            ('color', 'black')
                         ]
                     }]
                 ).set_properties(**{
@@ -164,6 +156,7 @@ class PromptHistoryApp:
 if __name__ == "__main__":
     app = PromptHistoryApp()
     app.run()
+
 
 
 
