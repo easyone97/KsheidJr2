@@ -9,10 +9,10 @@ import llm_security
 
 # Define the theme
 theme = {
-    'txc_inactive': 'white',
-    'menu_background': '#838383',
-    'txc_active': '#B67162',
-    'option_active': '#EEEEEE'
+     primaryColor="#25646f"
+    backgroundColor="#001929"
+    secondaryBackgroundColor="#1b2c50"
+    textColor="#ffffff"
 }
 
 # Initialize HydraApp with the theme
