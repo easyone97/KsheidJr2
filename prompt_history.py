@@ -140,7 +140,7 @@ class PromptHistoryApp:
                         ]
                     },
                     {
-                        'selector': 'td, th',.index_name, .row_heading,
+                        'selector': 'td, th,.index_name, .row_heading',
                         'props': [
                             ('border', '2px solid #4CAF50')
                         ]
