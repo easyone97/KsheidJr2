@@ -71,6 +71,7 @@ if __name__ == '__main__':
         }
         .footer-version {
             background-color: #e0e0e0;
+            color: black;
             padding: 5px;
             border-radius: 5px;
             display: inline-block;
