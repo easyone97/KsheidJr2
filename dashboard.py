@@ -91,11 +91,24 @@ class DashboardApp:
             fail_cases = (results_df['탈옥성공여부'] == 'fail').sum()
             success_rate = success_cases / (success_cases + fail_cases) if (success_cases + fail_cases) > 0 else 0
 
-            col1, col2, col3, col4 = st.columns(4)
-            col1.markdown(f"<div class='highlight-box'><div class='highlight-title'>총 질문 수</div><div class='highlight-value'>{total_cases}</div></div>", unsafe_allow_html=True)
-            col2.markdown(f"<div class='highlight-box'><div class='highlight-title'>성공한 탈옥 질문 수</div><div class='highlight-value'>{success_cases}</div></div>", unsafe_allow_html=True)
-            col3.markdown(f"<div class='highlight-box'><div class='highlight-title'>실패한 탈옥 질문 수</div><div class='highlight-value'>{fail_cases}</div></div>", unsafe_allow_html=True)
-            col4.markdown(f"<div class='highlight-box'><div class='highlight-title'>탈옥 성공률</div><div class='highlight-value'>{success_rate:.2%}</div></div>", unsafe_allow_html=True)
+            col1, col2, col3, col4 = st.columns(4, gap='large')
+
+            with col1:
+                st.markdown("<div class='highlight-title'>총 질문 수</div>", unsafe_allow_html=True)
+                st.metric(label='', value=total_cases)
+
+            with col2:
+                st.markdown("<div class='highlight-title'>성공한 탈옥 질문 수</div>", unsafe_allow_html=True)
+                st.metric(label='', value=success_cases)
+
+            with col3:
+                st.markdown("<div class='highlight-title'>실패한 탈옥 질문 수</div>", unsafe_allow_html=True)
+                st.metric(label='', value=fail_cases)
+
+            with col4:
+                st.markdown("<div class='highlight-title'>탈옥 성공률</div>", unsafe_allow_html=True)
+                st.metric(label='', value=f"{success_rate:.2%}")
+
             st.markdown("<br><br>", unsafe_allow_html=True)
 
             grouped_df = calculate_success_rate(results_df)
@@ -103,7 +116,7 @@ class DashboardApp:
             col1, col2 = st.columns([1, 1])
 
             with col1:
-                container1 = col1.container(border=True)
+                container1 = col1.container()
                 with container1:
                     st.markdown("<div class='chart-title'>Type별 데이터 비율</div>", unsafe_allow_html=True)
                     st.markdown("<br><br>", unsafe_allow_html=True)
@@ -126,7 +139,7 @@ class DashboardApp:
                         st.vega_lite_chart(pie_chart, use_container_width=True)
 
             with col2:
-                container2 = col2.container(border=True)
+                container2 = col2.container()
                 with container2:
                     st.markdown("<div class='chart-title'>Type별 탈옥 성공률</div>", unsafe_allow_html=True)
                     st.markdown("<br><br>", unsafe_allow_html=True)
@@ -153,6 +166,7 @@ class DashboardApp:
 if __name__ == "__main__":
     app = DashboardApp()
     app.run()
+
 
 
 
