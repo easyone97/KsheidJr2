@@ -69,7 +69,7 @@ class DashboardApp:
                     font-size: 1.2em;
                     font-weight: bold;
                     margin-bottom: 10px;
-                    width: 150%;
+                    width: 100%;
                 }
                 </style>
                 """,
