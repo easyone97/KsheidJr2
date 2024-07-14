@@ -87,6 +87,10 @@ class DashboardApp:
                 .metric-wrapper {
                     padding: 5% 20% 5% 10% !important;
                 }
+                .st-emotion-cache-1xarl3l {
+                padding-left: 10px;
+                
+                }
                 </style>
                 """,
                 unsafe_allow_html=True
