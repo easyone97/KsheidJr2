@@ -63,6 +63,7 @@ if __name__ == '__main__':
             margin-top: 10px;
         }
         .footer-links a {
+            margin-left:20px;
             margin:10px;
             color: #25646F;
             font-weight: bold;
