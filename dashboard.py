@@ -130,10 +130,11 @@ class DashboardApp:
                 with st.container(border=True):
                     st.markdown("<div class='info-text'>탈옥 성공률</div>", unsafe_allow_html=True)
                     st.metric(label='Success_Rate', value=f"{success_rate:.2%}")
-            st.markdown("<br><br>", unsafe_allow_html=True)
+            st.markdown("<br>", unsafe_allow_html=True)
 
             grouped_df = calculate_success_rate(results_df)
             st.markdown("<hr>", unsafe_allow_html=True)
+            st.markdown("<br>", unsafe_allow_html=True)
 
             col1, col2 = st.columns([1, 1])
 
