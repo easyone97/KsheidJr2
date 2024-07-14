@@ -7,10 +7,10 @@ import prompt_history
 import owasp
 import llm_security
 theme = {
-    'txc_inactive': '3D9DF333',
-    'menu_background': '#838383',
-    'txc_active': '#FFFFFF',
-    'option_active': '#EEEEEE'
+    'txc_inactive': '#FFFFFF',
+    'menu_background': '#25646F',
+    'txc_active': '#ff0500',
+    'option_active': '#3D9DF333'
 }
 
 # Initialize HydraApp with the theme
