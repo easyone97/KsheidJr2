@@ -79,9 +79,18 @@ class PromptHistoryApp:
                 .container-spacing {
                     margin-bottom: 10px;
                 }
-                .styled-dataframe th, .styled-dataframe td {
-                    background-color: white !important;
-                    color: black !important;
+                table {
+                    background-color: white;
+                    color: black;
+                    width: 100%;
+                    border-collapse: collapse;
+                }
+                table, th, td {
+                    border: 1px solid black;
+                }
+                th, td {
+                    padding: 10px;
+                    text-align: left;
                 }
                 </style>
                 """,
@@ -131,17 +140,18 @@ class PromptHistoryApp:
             if st.session_state.selected_success != "전체":
                 filtered_df = filtered_df[filtered_df['탈옥성공여부'] == st.session_state.selected_success]
 
-            # 스타일을 적용하여 데이터프레임을 표시
+            # 스타일을 적용하여 데이터프레임을 HTML로 변환
             styled_df = filtered_df.style.set_properties(**{
                 'background-color': 'white',
-                'color': 'black'
+                'color': 'black',
+                'border': '1px solid black'
             }).set_table_styles(
-                [{'selector': 'th', 'props': [('background-color', 'white'), ('color', 'black')]}]
+                [{'selector': 'th', 'props': [('background-color', 'white'), ('color', 'black'), ('border', '1px solid black')]}]
             )
 
             with col2:
                 st.markdown("<div class='chart-title'>Filtered Data</div>", unsafe_allow_html=True)
-                st.markdown(styled_df.render(), unsafe_allow_html=True, height=800)
+                st.markdown(styled_df.render(), unsafe_allow_html=True)
 
 if __name__ == "__main__":
     app = PromptHistoryApp()
