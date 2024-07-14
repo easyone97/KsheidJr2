@@ -64,7 +64,6 @@ class DashboardApp:
                 }
                 .metric-container {
                     border: 2px solid #ffffff;
-                    padding: 5% 5% 5% 10%
                     border-radius: 5px;
                 }
                 .chart-title {
@@ -86,7 +85,7 @@ class DashboardApp:
                     border-radius: 5px;
                 }
                 .metric-wrapper {
-                    padding: 10% 5% 5% 10% !important;
+                    padding: 5% 20% 5% 10% !important;
                 }
                 </style>
                 """,
