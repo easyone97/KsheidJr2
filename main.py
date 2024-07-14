@@ -2,13 +2,18 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 import time
+import os
 
 # 페이지 설정
 st.set_page_config(page_title="Descriptive Analytics", page_icon="🌎", layout="wide")
 
 # CSS 스타일 로드
-with open('style.css') as f:
-    st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
+css_file = 'style.css'
+if os.path.exists(css_file):
+    with open(css_file) as f:
+        st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
+else:
+    st.write("CSS 파일을 찾을 수 없습니다. 기본 스타일을 사용합니다.")
 
 # 엑셀 파일 로드
 df = pd.read_excel('data.xlsx', sheet_name='Sheet1')
