@@ -3,6 +3,7 @@ import pandas as pd
 import plotly.express as px
 import time
 import os
+from streamlit_option_menu import option_menu
 
 # 페이지 설정
 st.set_page_config(page_title="Descriptive Analytics", page_icon="🌎", layout="wide")
@@ -19,6 +20,17 @@ else:
 csv_file = '/Downloadfile/final_result_test.csv'
 if os.path.exists(csv_file):
     df = pd.read_csv(csv_file)
+else:
+    st.write("CSV 파일을 찾을 수 없습니다. 기본 데이터셋을 사용합니다.")
+    # 기본 데이터셋 생성
+    data = {
+        'number': [1, 2, 3],
+        '혼합된질문': ['질문1', '질문2', '질문3'],
+        '답변': ['답변1', '답변2', '답변3'],
+        'type': ['Type1', 'Type2', 'Type3'],
+        '탈옥성공여부': ['success', 'fail', 'success']
+    }
+    df = pd.DataFrame(data)
 
 # 함수 정의
 
@@ -107,15 +119,31 @@ def ProgressBar():
             time.sleep(0.1)
             my_bar.progress(percent_complete + 1)
 
-# 메뉴 탭 구현
-selected_tab = st.sidebar.radio("메뉴 선택", ["Dashboard", "Progress", "Graphs"])
+def sideBar():
+    with st.sidebar:
+        selected = option_menu(
+            menu_title="Menu",
+            options=["Home", "Progress"],
+            icons=["house", "eye"],
+            menu_icon="cast",
+            default_index=0,
+        )
+    if selected == "Home":
+        try:
+            HomePage()
+            Graphs()
+        except Exception as e:
+            st.warning(f"An error occurred: {e}")
 
-if selected_tab == "Dashboard":
-    HomePage()
-elif selected_tab == "Progress":
-    ProgressBar()
-elif selected_tab == "Graphs":
-    Graphs()
+    if selected == "Progress":
+        try:
+            ProgressBar()
+            Graphs()
+        except Exception as e:
+            st.warning(f"An error occurred: {e}")
+
+# 사이드바 출력
+sideBar()
 
 # 푸터 설정
 st.markdown(
