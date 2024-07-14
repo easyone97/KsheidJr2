@@ -95,7 +95,7 @@ class DashboardApp:
             fail_cases = (results_df['탈옥성공여부'] == 'fail').sum()
             success_rate = success_cases / (success_cases + fail_cases) if (success_cases + fail_cases) > 0 else 0
 
-            col1, col2, col3, col4 = st.columns(4)
+            col1, col2, col3, col4 = st.columns(4,gap='large')
             with col1:
                 st.info('총 질문 수', icon="🔍")
                 st.metric(label = 'sum TZS', value= f"{total_cases:,.0f}")
