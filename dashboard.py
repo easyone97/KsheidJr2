@@ -92,9 +92,8 @@ class DashboardApp:
 
             col1, col2, col3, col4 = st.columns(4)
             with col1:
-
-            st.info('Total Investment', icon="🔍")
-            st.metric(label = 'sum TZS', value= f"{total_investment:,.0f}")
+                st.info('Total Investment', icon="🔍")
+                st.metric(label = 'sum TZS', value= f"{total_investment:,.0f}")
     
             col2.markdown(f"<div class='highlight-box'><div class='highlight-title'>성공한 탈옥 질문 수</div><div class='highlight-value'>{success_cases}</div></div>", unsafe_allow_html=True)
             col3.markdown(f"<div class='highlight-box'><div class='highlight-title'>실패한 탈옥 질문 수</div><div class='highlight-value'>{fail_cases}</div></div>", unsafe_allow_html=True)
