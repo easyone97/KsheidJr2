@@ -7,7 +7,6 @@ import prompt_history
 import owasp
 import llm_security
 
-
 # Initialize HydraApp with the theme
 app = HydraApp(title='🚀 Jailbreak Verification Dashboard', use_navbar=True, navbar_animation=True, navbar_theme=theme)
 
