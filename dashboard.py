@@ -117,12 +117,12 @@ class DashboardApp:
                     st.metric(label='  Total_Cases', value=f"{total_cases}")
 
             with col2:
-                with st.container():
+                with st.container(border=True):
                     st.markdown("<div class='info-text'>성공한 탈옥 질문 수</div>", unsafe_allow_html=True)
                     st.metric(label='Success_Cases', value=f"{success_cases}")
 
             with col3:
-                with st.container():
+                with st.container(border=True):
                     st.markdown("<div class='info-text'>실패한 탈옥 질문 수</div>", unsafe_allow_html=True)
                     st.metric(label='Fail_Cases', value=f"{fail_cases}")
 
