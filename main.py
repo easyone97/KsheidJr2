@@ -8,12 +8,14 @@ import owasp
 import llm_security
 
 # Define the theme
-theme = {
-    primaryColor="#25646f"
-    backgroundColor="#001929"
-    secondaryBackgroundColor="#1b2c50"
-    textColor="#ffffff"
-}
+st.code("""
+[theme]
+primaryColor="#F39C12"
+backgroundColor="#2E86C1"
+secondaryBackgroundColor="#AED6F1"
+textColor="#FFFFFF"
+font="monospace"
+""")
 
 # Initialize HydraApp with the theme
 app = HydraApp(title='🚀 Jailbreak Verification Dashboard', use_navbar=True, navbar_animation=True, navbar_theme=theme)
