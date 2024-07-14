@@ -1,15 +1,11 @@
 import pandas as pd
 import streamlit as st
-import time  # 추가: 로딩 시뮬레이션을 위해
+import time
 
 # 독립적인 함수로 분리하여 캐시 처리
 @st.cache_data
 def load_results(filename):
     return pd.read_csv(filename)
-
-# CSS Style
-with open('style.css')as f:
-    st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html = True)
 
 def calculate_success_rate(results_df):
     grouped = results_df.groupby(['type']).agg(
@@ -44,22 +40,23 @@ class DashboardApp:
                 """
                 <style>
                 .highlight-title {
-                    color: #FFFFFF;
+                    color: #000000;
                     font-size: 1.5em;
                     font-weight: bold;
                 }
                 .highlight-value {
-                    color: #FFFFFF;
+                    color: #000000;
                     font-size: 2em;
                     font-weight: bold;
                 }
                 .highlight-box {
+                    background-color: #EEEEEE;
                     padding: 10px;
                     border-radius: 5px;
                     width: 100%;
                 }
                 .col-box {
-                    border: 1px solid #ddd;
+                    border: 1px solid #ffffff;
                     padding: 20px;
                     margin: 10px;
                     border-radius: 5px;
@@ -67,7 +64,7 @@ class DashboardApp:
                     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
                 }
                 .chart-title {
-                    background-color: #25646F;
+                    background-color: #838383;
                     color: white;
                     padding: 10px;
                     border-radius: 5px;
@@ -81,7 +78,7 @@ class DashboardApp:
                 unsafe_allow_html=True
             )
 
-            st.markdown("<h1 style='font-size: 2.5em; color: #FFFFFF;'>🚀 Jailbreak Verification Dashboard</h1>", unsafe_allow_html=True)
+            st.markdown("<h1 style='font-size: 2.5em; color: #000000;'>🚀 Jailbreak Verification Dashboard</h1>", unsafe_allow_html=True)
             st.markdown("<p style='font-size: 1.5em;'>당신의 LLM 탈옥 가능성을 확인해보세요!</p>", unsafe_allow_html=True)
             st.markdown("<br><br>", unsafe_allow_html=True)
 
@@ -94,32 +91,40 @@ class DashboardApp:
             fail_cases = (results_df['탈옥성공여부'] == 'fail').sum()
             success_rate = success_cases / (success_cases + fail_cases) if (success_cases + fail_cases) > 0 else 0
 
-            col1, col2, col3, col4 = st.columns(4,gap='large')
+            col1, col2, col3, col4 = st.columns(4, gap='large')
+
             with col1:
+                st.markdown("<div class='col-box'>", unsafe_allow_html=True)
                 st.info('총 질문 수', icon="🔍")
                 st.metric(label='', value=f"{total_cases}")
+                st.markdown("</div>", unsafe_allow_html=True)
 
             with col2:
+                st.markdown("<div class='col-box'>", unsafe_allow_html=True)
                 st.info('성공한 탈옥 질문 수', icon="🔍")
                 st.metric(label='', value=f"{success_cases}")
+                st.markdown("</div>", unsafe_allow_html=True)
 
             with col3:
+                st.markdown("<div class='col-box'>", unsafe_allow_html=True)
                 st.info('실패한 탈옥 질문 수', icon="🔍")
                 st.metric(label='', value=f"{fail_cases}")
+                st.markdown("</div>", unsafe_allow_html=True)
 
             with col4:
+                st.markdown("<div class='col-box'>", unsafe_allow_html=True)
                 st.info('탈옥 성공률', icon="🔍")
                 st.metric(label='', value=f"{success_rate:.2%}")
+                st.markdown("</div>", unsafe_allow_html=True)
 
             st.markdown("<br><br>", unsafe_allow_html=True)
-          
 
             grouped_df = calculate_success_rate(results_df)
 
             col1, col2 = st.columns([1, 1])
 
             with col1:
-                container1 = col1.container(border=True)
+                container1 = col1.container()
                 with container1:
                     st.markdown("<div class='chart-title'>Type별 데이터 비율</div>", unsafe_allow_html=True)
                     st.markdown("<br><br>", unsafe_allow_html=True)
@@ -142,7 +147,7 @@ class DashboardApp:
                         st.vega_lite_chart(pie_chart, use_container_width=True)
 
             with col2:
-                container2 = col2.container(border=True)
+                container2 = col2.container()
                 with container2:
                     st.markdown("<div class='chart-title'>Type별 탈옥 성공률</div>", unsafe_allow_html=True)
                     st.markdown("<br><br>", unsafe_allow_html=True)
