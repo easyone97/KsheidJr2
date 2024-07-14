@@ -17,9 +17,9 @@ theme = {
 app = HydraApp(title='🚀 Jailbreak Verification Dashboard', use_navbar=True, navbar_animation=True, navbar_theme=theme)
 
 # Add main apps
-app.add_app("Dashboard", app=dashboard.DashboardApp(), icon="🏠")
-app.add_app("탈옥 프롬프트 내역", app=prompt_history.PromptHistoryApp(), icon="📚")
-app.add_app("참고자료", app=owasp.OWASPApp(), icon="📘")
+app.add_app("Dashboard", app=dashboard.DashboardApp())
+app.add_app("탈옥 프롬프트 내역", app=prompt_history.PromptHistoryApp())
+app.add_app("참고자료", app=owasp.OWASPApp())
 
 # Define the structure for complex navigation
 complex_nav = {
