@@ -75,7 +75,7 @@ class DashboardApp:
                 unsafe_allow_html=True
             )
 
-            st.markdown("<h1 style='font-size: 2.5em; color: #000000;'>🚀 Jailbreak Verification Dashboard</h1>", unsafe_allow_html=True)
+            st.markdown("<h1 style='font-size: 2.5em; color: #FFFFFF;'>🚀 Jailbreak Verification Dashboard</h1>", unsafe_allow_html=True)
             st.markdown("<p style='font-size: 1.5em;'>당신의 LLM 탈옥 가능성을 확인해보세요!</p>", unsafe_allow_html=True)
             st.markdown("<br><br>", unsafe_allow_html=True)
 
