@@ -55,13 +55,10 @@ class DashboardApp:
                     border-radius: 5px;
                     width: 100%;
                 }
-                .col-box {
-                    border: 1px solid #ffffff;
-                    padding: 20px;
-                    margin: 10px;
+                .metric-container {
+                    border: 2px solid #ffffff;
+                    padding: 10px;
                     border-radius: 5px;
-                    background-color: #f1f1f1;
-                    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
                 }
                 .chart-title {
                     background-color: #838383;
@@ -94,28 +91,32 @@ class DashboardApp:
             col1, col2, col3, col4 = st.columns(4, gap='large')
 
             with col1:
-                st.markdown("<div class='col-box'>", unsafe_allow_html=True)
-                st.info('총 질문 수', icon="🔍")
-                st.metric(label='', value=f"{total_cases}")
-                st.markdown("</div>", unsafe_allow_html=True)
+                with st.container():
+                    st.markdown("<div class='metric-container'>", unsafe_allow_html=True)
+                    st.info('총 질문 수', icon="🔍")
+                    st.metric(label='', value=f"{total_cases}")
+                    st.markdown("</div>", unsafe_allow_html=True)
 
             with col2:
-                st.markdown("<div class='col-box'>", unsafe_allow_html=True)
-                st.info('성공한 탈옥 질문 수', icon="🔍")
-                st.metric(label='', value=f"{success_cases}")
-                st.markdown("</div>", unsafe_allow_html=True)
+                with st.container():
+                    st.markdown("<div class='metric-container'>", unsafe_allow_html=True)
+                    st.info('성공한 탈옥 질문 수', icon="🔍")
+                    st.metric(label='', value=f"{success_cases}")
+                    st.markdown("</div>", unsafe_allow_html=True)
 
             with col3:
-                st.markdown("<div class='col-box'>", unsafe_allow_html=True)
-                st.info('실패한 탈옥 질문 수', icon="🔍")
-                st.metric(label='', value=f"{fail_cases}")
-                st.markdown("</div>", unsafe_allow_html=True)
+                with st.container():
+                    st.markdown("<div class='metric-container'>", unsafe_allow_html=True)
+                    st.info('실패한 탈옥 질문 수', icon="🔍")
+                    st.metric(label='', value=f"{fail_cases}")
+                    st.markdown("</div>", unsafe_allow_html=True)
 
             with col4:
-                st.markdown("<div class='col-box'>", unsafe_allow_html=True)
-                st.info('탈옥 성공률', icon="🔍")
-                st.metric(label='', value=f"{success_rate:.2%}")
-                st.markdown("</div>", unsafe_allow_html=True)
+                with st.container():
+                    st.markdown("<div class='metric-container'>", unsafe_allow_html=True)
+                    st.info('탈옥 성공률', icon="🔍")
+                    st.metric(label='', value=f"{success_rate:.2%}")
+                    st.markdown("</div>", unsafe_allow_html=True)
 
             st.markdown("<br><br>", unsafe_allow_html=True)
 
@@ -174,6 +175,7 @@ class DashboardApp:
 if __name__ == "__main__":
     app = DashboardApp()
     app.run()
+
 
 
 
