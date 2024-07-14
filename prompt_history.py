@@ -140,14 +140,28 @@ class PromptHistoryApp:
             if st.session_state.selected_success != "전체":
                 filtered_df = filtered_df[filtered_df['탈옥성공여부'] == st.session_state.selected_success]
 
+            # 데이터프레임 스타일링 함수
+            def style_dataframe(df):
+                return df.style.set_table_styles(
+                    [{
+                        'selector': 'th',
+                        'props': [
+                            ('background-color', '#4CAF50'),
+                            ('color', 'white'),
+                            ('font-family', 'Arial, sans-serif'),
+                            ('font-size', '16px')
+                        ]
+                    },
+                    {
+                        'selector': 'td, th',
+                        'props': [
+                            ('border', '2px solid #4CAF50')
+                        ]
+                    }]
+                )
+
             # 스타일을 적용하여 데이터프레임을 HTML로 변환
-            styled_df = filtered_df.style.set_properties(**{
-                'background-color': 'white',
-                'color': 'black',
-                'border': '1px solid black'
-            }).set_table_styles(
-                [{'selector': 'th', 'props': [('background-color', 'white'), ('color', 'black'), ('border', '1px solid black')]}]
-            ).to_html()
+            styled_df = style_dataframe(filtered_df).to_html()
 
             with col2:
                 st.markdown("<div class='chart-title'>Filtered Data</div>", unsafe_allow_html=True)
