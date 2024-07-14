@@ -86,7 +86,7 @@ class DashboardApp:
                     border-radius: 5px;
                 }
                 .metric-wrapper {
-                    padding: 5% 5% 5% 10% !important;
+                    padding: 10% 5% 5% 10% !important;
                 }
                 </style>
                 """,
