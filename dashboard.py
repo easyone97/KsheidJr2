@@ -72,6 +72,7 @@ class DashboardApp:
                     width: 100%;
                 }
                 .info-text {
+                    background-color: #3D9DF333;
                     font-size: 1.2em;
                     font-weight: bold;
                 }
@@ -98,25 +99,21 @@ class DashboardApp:
             with col1:
                 with st.container():
                     st.markdown("<p class='info-text'>총 질문 수</p>", unsafe_allow_html=True)
-                    st.info('총 질문 수', icon="🔍")
                     st.metric(label='Total_Cases', value=f"{total_cases}")
 
             with col2:
                 with st.container():
                     st.markdown("<p class='info-text'>성공한 탈옥 질문 수</p>", unsafe_allow_html=True)
-                    st.info('성공한 탈옥 질문 수', icon="🔍")
                     st.metric(label='Success_Cases', value=f"{success_cases}")
 
             with col3:
                 with st.container():
                     st.markdown("<p class='info-text'>실패한 탈옥 질문 수</p>", unsafe_allow_html=True)
-                    st.info('실패한 탈옥 질문 수', icon="🔍")
                     st.metric(label='Fail_Cases', value=f"{fail_cases}")
 
             with col4:
                 with st.container():
                     st.markdown("<p class='info-text'>탈옥 성공률</p>", unsafe_allow_html=True)
-                    st.info('탈옥 성공률', icon="🔍")
                     st.metric(label='Success_Rate', value=f"{success_rate:.2%}")
 
             st.markdown("<br><br>", unsafe_allow_html=True)
