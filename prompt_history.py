@@ -134,7 +134,7 @@ class PromptHistoryApp:
                         'selector': 'th',
                         'props': [
                             ('background-color', '#4CAF50'),
-                            ('color', 'white'),
+                            ('color', 'black'),
                             ('font-family', 'Arial, sans-serif'),
                             ('font-size', '16px')
                         ]
