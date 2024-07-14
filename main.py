@@ -6,6 +6,12 @@ import dashboard
 import prompt_history
 import owasp
 import llm_security
+theme = {
+    'txc_inactive': 'white',
+    'menu_background': '#838383',
+    'txc_active': '#B67162',
+    'option_active': '#EEEEEE'
+}
 
 # Initialize HydraApp with the theme
 app = HydraApp(title='🚀 Jailbreak Verification Dashboard', use_navbar=True, navbar_animation=True, navbar_theme=theme)
