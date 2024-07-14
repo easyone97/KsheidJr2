@@ -47,7 +47,7 @@ if __name__ == '__main__':
             margin-bottom: 10rem; /* Add space between content and footer */
         }
         .footer {
-            background-color: ##25646F;
+            background-color: #25646F;
             color: black;
             text-align: center;
             padding: 10px;
