@@ -149,7 +149,8 @@ class PromptHistoryApp:
                     }]
                 ).set_properties(**{
                     'background-color': 'white',
-                    'color': 'black'
+                    'color': 'black',
+                    'border': 'black'
                 }), height=800, use_container_width=True)
 
 if __name__ == "__main__":
