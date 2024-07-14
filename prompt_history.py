@@ -141,7 +141,7 @@ class PromptHistoryApp:
                 filtered_df = filtered_df[filtered_df['탈옥성공여부'] == st.session_state.selected_success]
 
             with col2:
-                 st.markdown("""
+                st.markdown("""
                 <style>
                 table {background-color: white;}
                 </style>
