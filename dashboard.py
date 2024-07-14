@@ -78,6 +78,9 @@ class DashboardApp:
                     padding: 10px;
                     border-radius: 5px;
                 }
+                .metric-wrapper {
+                    margin-left: 20px; /* Increase this value to adjust left margin */
+                }
                 </style>
                 """,
                 unsafe_allow_html=True
@@ -98,25 +101,33 @@ class DashboardApp:
 
             col1, col2, col3, col4 = st.columns(4, gap='large')
 
-            with col1:
-                with st.container(border=True):
-                    st.markdown("<p class='info-text'>총 질문 수</p>", unsafe_allow_html=True)
+             with col1:
+                with st.container():
+                    st.markdown("<div class='custom-info'>총 질문 수</div>", unsafe_allow_html=True)
+                    st.markdown("<div class='metric-wrapper'>", unsafe_allow_html=True)
                     st.metric(label='Total_Cases', value=f"{total_cases}")
+                    st.markdown("</div>", unsafe_allow_html=True)
 
             with col2:
-                with st.container(border=True):
-                    st.markdown("<p class='info-text'>성공한 탈옥 질문 수</p>", unsafe_allow_html=True)
+                with st.container():
+                    st.markdown("<div class='custom-info'>성공한 탈옥 질문 수</div>", unsafe_allow_html=True)
+                    st.markdown("<div class='metric-wrapper'>", unsafe_allow_html=True)
                     st.metric(label='Success_Cases', value=f"{success_cases}")
+                    st.markdown("</div>", unsafe_allow_html=True)
 
             with col3:
-                with st.container(border=True):
-                    st.markdown("<p class='info-text'>실패한 탈옥 질문 수</p>", unsafe_allow_html=True)
+                with st.container():
+                    st.markdown("<div class='custom-info'>실패한 탈옥 질문 수</div>", unsafe_allow_html=True)
+                    st.markdown("<div class='metric-wrapper'>", unsafe_allow_html=True)
                     st.metric(label='Fail_Cases', value=f"{fail_cases}")
+                    st.markdown("</div>", unsafe_allow_html=True)
 
             with col4:
-                with st.container(border=True):
-                    st.markdown("<p class='info-text'>탈옥 성공률</p>", unsafe_allow_html=True)
+                with st.container():
+                    st.markdown("<div class='custom-info'>탈옥 성공률</div>", unsafe_allow_html=True)
+                    st.markdown("<div class='metric-wrapper'>", unsafe_allow_html=True)
                     st.metric(label='Success_Rate', value=f"{success_rate:.2%}")
+                    st.markdown("</div>", unsafe_allow_html=True)
 
             st.markdown("<br><br>", unsafe_allow_html=True)
 
