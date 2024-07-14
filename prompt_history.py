@@ -129,7 +129,6 @@ class PromptHistoryApp:
 
             # Streamlit 기본 테이블 렌더링
             with col2:
-                st.markdown("<div class='chart-title'>Filtered Data</div>", unsafe_allow_html=True)
                 st.dataframe(filtered_df.style.set_table_styles(
                     [{
                         'selector': 'th',
