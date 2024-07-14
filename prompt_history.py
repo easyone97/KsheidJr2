@@ -79,18 +79,20 @@ class PromptHistoryApp:
                 .container-spacing {
                     margin-bottom: 10px;
                 }
-                table {
+                .dataframe table {
                     background-color: white;
                     color: black;
                     width: 100%;
                     border-collapse: collapse;
                 }
-                table, th, td {
+                .dataframe th, .dataframe td {
                     border: 1px solid black;
                 }
-                th, td {
-                    padding: 10px;
-                    text-align: left;
+                .dataframe th {
+                    background-color: #4CAF50;
+                    color: white;
+                    font-family: Arial, sans-serif;
+                    font-size: 16px;
                 }
                 </style>
                 """,
@@ -146,35 +148,34 @@ class PromptHistoryApp:
                     [{
                         'selector': 'th',
                         'props': [
-                            ('background-color', '#4CAF50'),  # 헤더 셀 배경색 설정
-                            ('color', 'white'),  # 헤더 셀 글씨 색 설정
-                            ('font-family', 'Arial, sans-serif'),  # 헤더 셀 글꼴 설정
-                            ('font-size', '16px')  # 헤더 셀 글씨 크기 설정
+                            ('background-color', '#4CAF50'),
+                            ('color', 'white'),
+                            ('font-family', 'Arial, sans-serif'),
+                            ('font-size', '16px')
                         ]
                     },
                     {
                         'selector': 'td, th, .index_name, .row_heading',
                         'props': [
-                            ('border', '2px solid #4CAF50'),  # 셀 경계 설정
-                            ('background-color', 'white'),  # 셀 배경색 설정
-                            ('color', 'black')  # 셀 글씨 색 설정
+                            ('border', '2px solid #4CAF50')
                         ]
                     }]
                 ).set_properties(**{
-                    'background-color': 'white',  # 모든 셀 배경색 설정
-                    'color': 'black'  # 모든 셀 글씨 색 설정
+                    'background-color': 'white',
+                    'color': 'black'
                 })
 
             # 스타일을 적용하여 데이터프레임을 HTML로 변환
-            styled_df = style_dataframe(filtered_df).to_html()
+            styled_df = style_dataframe(filtered_df)
 
             with col2:
                 st.markdown("<div class='chart-title'>Filtered Data</div>", unsafe_allow_html=True)
-                st.markdown(styled_df, unsafe_allow_html=True)
+                st.write(styled_df)  # 스타일링된 데이터프레임을 표시
 
 if __name__ == "__main__":
     app = PromptHistoryApp()
     app.run()
+
 
 
 
