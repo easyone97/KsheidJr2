@@ -28,6 +28,10 @@ class PromptHistoryApp:
                 st.session_state.results_df = load_results('Downloadfile/final_result_test.csv')
                 st.session_state.filtered_df = st.session_state.results_df
 
+        # filtered_df 초기화
+        if 'filtered_df' not in st.session_state:
+            st.session_state.filtered_df = st.session_state.results_df
+
         # 초기 선택 상태 설정
         if 'selected_types' not in st.session_state:
             st.session_state.selected_types = ["전체"]
