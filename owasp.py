@@ -86,7 +86,7 @@ class OWASPApp:
                 "file": "Downloadfile/2024-LLM-한국형-보안-가이드라인.pdf"
             },
             {
-                "title": "한국어 탈옥 프롬프트 데이터셋 (2024-07-05 ver)",
+                "title": "한국어 탈옥 프롬프트 데이터셋 (2024-07-17 ver)",
                 "description": "한국어 탈옥 프롬프트 공격의 실효성을 확인할 수 있는 데이터셋 (지속 업데이트 예정)",
                 "image": "Images/checklist.png",
                 "file": "Downloadfile/jailbreakPrompt.csv"
