@@ -102,12 +102,20 @@ class PromptHistoryApp:
             with col1:
                 with st.container(border=True):
                     st.markdown("<div class='filter-label'>Type 선택</div>", unsafe_allow_html=True)
-                    type_options = ["전체"] + results_df['type'].unique().tolist()
+                    type_options = ["전체"]
+                    if st.session_state.results_df is not None:
+                        type_options += st.session_state.results_df['type'].unique().tolist()
                     selected_types = st.multiselect("", type_options, default=st.session_state.selected_types)
                     st.markdown("<div class='apply-button'>", unsafe_allow_html=True)
                     if st.button("적용", key="apply_button"):
                         st.session_state.selected_types = selected_types
-                    st.markdown("</div>", unsafe_allow_html=True)
+                        st.session_state.results_df = load_results('Downloadfile/final_result_test.csv')
+                        st.session_state.filtered_df = st.session_state.results_df.copy()
+                        if "전체" not in st.session_state.selected_types:
+                            st.session_state.filtered_df = st.session_state.filtered_df[st.session_state.filtered_df['type'].isin(st.session_state.selected_types)]
+                        if st.session_state.selected_success != "전체":
+                            st.session_state.filtered_df = st.session_state.filtered_df[st.session_state.filtered_df['탈옥성공여부'] == st.session_state.selected_success]
+                st.markdown("</div>", unsafe_allow_html=True)
 
                 st.markdown("<div class='container-spacing'></div>", unsafe_allow_html=True)
 
