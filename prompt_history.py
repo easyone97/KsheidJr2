@@ -15,14 +15,6 @@ class PromptHistoryApp:
         self.parent_app = parent_app
 
     def run(self):
-        # 세션 상태 초기화
-        if 'results_df' not in st.session_state:
-            st.session_state.results_df = load_results('Downloadfile/final_result_test.csv')
-            st.session_state.filtered_df = st.session_state.results_df
-        if 'selected_types' not in st.session_state:
-            st.session_state.selected_types = ["전체"]
-        if 'selected_success' not in st.session_state:
-            st.session_state.selected_success = "전체"
         # 로딩 공간을 유지하기 위한 placeholder 생성
         placeholder = st.empty()
 
@@ -64,8 +56,8 @@ class PromptHistoryApp:
                     font-weight: bold;
                     color: white;
                     margin-bottom: 10px;
-                    background-color: #3D9DF333;
-                    padding: 10px;
+                    background-color: #838383;
+                    padding: 5px;
                     border-radius: 5px;
                 }
                 .radio-label {
@@ -79,7 +71,6 @@ class PromptHistoryApp:
                     justify-content: flex-end;
                     margin-top: 10px;
                     margin-bottom: 10px;
-                    margin-left: 10px;
                 }
                 .spacer {
                     margin-bottom: 10px;
@@ -91,12 +82,18 @@ class PromptHistoryApp:
                 """,
                 unsafe_allow_html=True
             )
-            st.markdown("<h1 style='font-size: 2.5em; color: #FFFFFF;'>탈옥 프롬프트 내역</h1>", unsafe_allow_html=True)
+            st.markdown("<h1 style='font-size: 2.5em; color: #000000;'>탈옥 프롬프트 내역</h1>", unsafe_allow_html=True)
             st.markdown("<br><br>", unsafe_allow_html=True)
 
             if results_df.empty:
                 st.warning("No data available to display.")
                 return
+
+            # 초기 선택 상태 설정
+            if 'selected_types' not in st.session_state:
+                st.session_state.selected_types = ["전체"]
+            if 'selected_success' not in st.session_state:
+                st.session_state.selected_success = "전체"
 
             # 레이아웃 설정
             col1, col2 = st.columns([2, 8])
@@ -104,17 +101,11 @@ class PromptHistoryApp:
             with col1:
                 with st.container(border=True):
                     st.markdown("<div class='filter-label'>Type 선택</div>", unsafe_allow_html=True)
-                    type_options = ["전체"] + st.session_state.results_df['type'].unique().tolist()
+                    type_options = ["전체"] + results_df['type'].unique().tolist()
                     selected_types = st.multiselect("", type_options, default=st.session_state.selected_types)
-                    st.session_state.selected_types = selected_types
                     st.markdown("<div class='apply-button'>", unsafe_allow_html=True)
                     if st.button("적용", key="apply_button"):
-                        st.session_state.filtered_df = st.session_state.results_df.copy()
-                        # 선택된 필터에 따라 데이터 필터링
-                        if "전체" not in st.session_state.selected_types:
-                            st.session_state.filtered_df = st.session_state.filtered_df[st.session_state.filtered_df['type'].isin(st.session_state.selected_types)]
-                        if st.session_state.selected_success != "전체":
-                            st.session_state.filtered_df = st.session_state.filtered_df[st.session_state.filtered_df['탈옥성공여부'] == st.session_state.selected_success]
+                        st.session_state.selected_types = selected_types
                     st.markdown("</div>", unsafe_allow_html=True)
 
                 st.markdown("<div class='container-spacing'></div>", unsafe_allow_html=True)
@@ -128,10 +119,16 @@ class PromptHistoryApp:
                     st.session_state.selected_success = selected_success_actual
                     st.markdown('<style>.stRadio > div {display: flex; flex-direction: column;}</style>', unsafe_allow_html=True)
 
-        # 필터링된 데이터 표시
-        if st.session_state.filtered_df is not None:
+            # 선택된 필터에 따라 데이터 필터링
+            filtered_df = results_df.copy()
+            if "전체" not in st.session_state.selected_types:
+                filtered_df = filtered_df[filtered_df['type'].isin(st.session_state.selected_types)]
+            if st.session_state.selected_success != "전체":
+                filtered_df = filtered_df[filtered_df['탈옥성공여부'] == st.session_state.selected_success]
+
+            # 필터링된 데이터 표시
             with col2:
-                st.dataframe(st.session_state.filtered_df.style.set_table_styles(
+                st.dataframe(filtered_df.style.set_table_styles(
                     [{
                         'selector': 'th',
                         'props': [
@@ -154,10 +151,11 @@ class PromptHistoryApp:
                     'color': 'black',
                     'border': '1.3px solid black'
                 }), height=800, use_container_width=True)
-                    
+
 if __name__ == "__main__":
     app = PromptHistoryApp()
     app.run()
+
 
 
 
