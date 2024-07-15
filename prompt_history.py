@@ -102,27 +102,27 @@ class PromptHistoryApp:
             col1, col2 = st.columns([2, 8])
 
             with col1:
-            with st.container(border=True):
-                st.markdown("<div class='filter-label'>Type 선택</div>", unsafe_allow_html=True)
-                # 데이터 로딩 전 기본 옵션을 사용
-                type_options = ["전체"]
-                if st.session_state.results_df is not None:
-                    type_options += st.session_state.results_df['type'].unique().tolist()
+                with st.container(border=True):
+                    st.markdown("<div class='filter-label'>Type 선택</div>", unsafe_allow_html=True)
+                    # 데이터 로딩 전 기본 옵션을 사용
+                    type_options = ["전체"]
+                    if st.session_state.results_df is not None:
+                        type_options += st.session_state.results_df['type'].unique().tolist()
                 
-                selected_types = st.multiselect("", type_options, default=st.session_state.selected_types)
-                st.markdown("<div class='apply-button'>", unsafe_allow_html=True)
-                if st.button("적용", key="apply_button"):
-                    st.session_state.selected_types = selected_types
-                    # 여기서 데이터 로딩
-                    if st.session_state.results_df is None:
-                        st.session_state.results_df = load_results('Downloadfile/final_result_test.csv')
-                    st.session_state.filtered_df = st.session_state.results_df.copy()
-                    # 선택된 필터에 따라 데이터 필터링
-                    if "전체" not in st.session_state.selected_types:
-                        st.session_state.filtered_df = st.session_state.filtered_df[st.session_state.filtered_df['type'].isin(st.session_state.selected_types)]
-                    if st.session_state.selected_success != "전체":
-                        st.session_state.filtered_df = st.session_state.filtered_df[st.session_state.filtered_df['탈옥성공여부'] == st.session_state.selected_success]
-                st.markdown("</div>", unsafe_allow_html=True)
+                    selected_types = st.multiselect("", type_options, default=st.session_state.selected_types)
+                    st.markdown("<div class='apply-button'>", unsafe_allow_html=True)
+                    if st.button("적용", key="apply_button"):
+                        st.session_state.selected_types = selected_types
+                        # 여기서 데이터 로딩
+                        if st.session_state.results_df is None:
+                            st.session_state.results_df = load_results('Downloadfile/final_result_test.csv')
+                        st.session_state.filtered_df = st.session_state.results_df.copy()
+                        # 선택된 필터에 따라 데이터 필터링
+                        if "전체" not in st.session_state.selected_types:
+                            st.session_state.filtered_df = st.session_state.filtered_df[st.session_state.filtered_df['type'].isin(st.session_state.selected_types)]
+                        if st.session_state.selected_success != "전체":
+                            st.session_state.filtered_df = st.session_state.filtered_df[st.session_state.filtered_df['탈옥성공여부'] == st.session_state.selected_success]
+                    st.markdown("</div>", unsafe_allow_html=True)
 
             st.markdown("<div class='container-spacing'></div>", unsafe_allow_html=True)
 
