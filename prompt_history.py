@@ -1,11 +1,12 @@
 import pandas as pd
 import streamlit as st
 
-# 독립적인 함수로 분리하여 캐시 처리
+# 데이터 로드를 캐시 처리
 @st.cache_data
 def load_results(filename):
     return pd.read_csv(filename)
 
+# 데이터 필터링 함수
 def filter_data(df, selected_types, selected_success):
     filtered_df = df.copy()
     if "전체" not in selected_types:
@@ -13,6 +14,13 @@ def filter_data(df, selected_types, selected_success):
     if selected_success != "전체":
         filtered_df = filtered_df[filtered_df['탈옥성공여부'] == selected_success]
     return filtered_df
+
+# 지연 로딩을 위한 함수
+def get_type_options(df, query=""):
+    if query:
+        return df['type'][df['type'].str.contains(query, case=False)].unique().tolist()
+    else:
+        return df['type'].unique().tolist()
 
 class PromptHistoryApp:
     def __init__(self):
@@ -23,11 +31,11 @@ class PromptHistoryApp:
         self.parent_app = parent_app
 
     def run(self):
+        # 데이터 로드
         if 'results_df' not in st.session_state:
             with st.spinner('데이터 로딩 중...'):
                 st.session_state.results_df = load_results('Downloadfile/final_result_test.csv')
-                st.session_state.filtered_df = st.session_state.results_df
-
+        
         # filtered_df 초기화
         if 'filtered_df' not in st.session_state:
             st.session_state.filtered_df = st.session_state.results_df
@@ -38,7 +46,7 @@ class PromptHistoryApp:
         if 'selected_success' not in st.session_state:
             st.session_state.selected_success = "전체"
 
-        # 로딩 완료 후 UI 업데이트
+        # UI 업데이트
         st.markdown(
             """
             <style>
@@ -106,7 +114,8 @@ class PromptHistoryApp:
         with col1:
             with st.container():
                 st.markdown("<div class='filter-label'>Type 선택</div>", unsafe_allow_html=True)
-                type_options = ["전체"] + st.session_state.results_df['type'].unique().tolist()
+                search_query = st.text_input("검색", "")
+                type_options = ["전체"] + get_type_options(st.session_state.results_df, search_query)
                 selected_types = st.multiselect("", type_options, default=st.session_state.selected_types)
                 st.session_state.selected_types = selected_types
 
@@ -156,4 +165,5 @@ class PromptHistoryApp:
 if __name__ == "__main__":
     app = PromptHistoryApp()
     app.run()
+
 
