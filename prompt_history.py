@@ -112,13 +112,13 @@ class PromptHistoryApp:
                     st.markdown("<div class='filter-label'>Type 선택</div>", unsafe_allow_html=True)
                     type_options = ["전체"] + st.session_state.results_df['type'].unique().tolist()
                     selected_types = st.multiselect("Type 선택", type_options, default=st.session_state.selected_types, label_visibility='hidden')
-                    st.markdown("<div class='apply-button'>", unsafe_allow_html=True)
-                    if st.button("적용", key="apply_button"):
-                        st.session_state.selected_types = selected_types
-                        success_options_actual = ["전체", "success", "fail"]
-                        st.session_state.selected_success = success_options_actual[success_options_display.index(selected_success_display)]
-                        st.session_state.filtered_df = filter_data(st.session_state.results_df, st.session_state.selected_types, st.session_state.selected_success)
-                    st.markdown("</div>", unsafe_allow_html=True)
+                st.markdown("<div class='apply-button'>", unsafe_allow_html=True)
+                if st.button("적용", key="apply_button"):
+                    st.session_state.selected_types = selected_types
+                    success_options_actual = ["전체", "success", "fail"]
+                    st.session_state.selected_success = success_options_actual[success_options_display.index(selected_success_display)]
+                    st.session_state.filtered_df = filter_data(st.session_state.results_df, st.session_state.selected_types, st.session_state.selected_success)
+                st.markdown("</div>", unsafe_allow_html=True)
 
                 st.markdown("<div class='container-spacing'></div>", unsafe_allow_html=True)
 
