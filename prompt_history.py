@@ -40,7 +40,7 @@ class PromptHistoryApp:
             st.markdown(
                 """
                 <style>
-                .container-box {
+                  .container-box {
                     border: 1px solid #ddd;
                     padding: 20px;
                     border-radius: 5px;
@@ -65,8 +65,8 @@ class PromptHistoryApp:
                     font-weight: bold;
                     color: white;
                     margin-bottom: 10px;
-                    background-color: #838383;
-                    padding: 5px;
+                    background-color: #3D9DF333;
+                    padding: 10px;
                     border-radius: 5px;
                 }
                 .radio-label {
@@ -80,6 +80,7 @@ class PromptHistoryApp:
                     justify-content: flex-end;
                     margin-top: 10px;
                     margin-bottom: 10px;
+                    margin-left: 10px;
                 }
                 .spacer {
                     margin-bottom: 10px;
@@ -87,11 +88,23 @@ class PromptHistoryApp:
                 .container-spacing {
                     margin-bottom: 10px;
                 }
+                table {
+                    background-color: white;
+                    color: black;
+                    width: 100%;
+                    border-collapse: collapse;
+                }
+                table, th, td {
+                    border: 1px solid black;
+                }
+                th, td {
+                    padding: 10px;
+                    text-align: left;
                 </style>
                 """,
                 unsafe_allow_html=True
             )
-            st.markdown("<h1 style='font-size: 2.5em; color: #000000;'>탈옥 프롬프트 내역</h1>", unsafe_allow_html=True)
+            st.markdown("<h1 style='font-size: 2.5em; color: #FFFFFF;'>탈옥 프롬프트 내역</h1>", unsafe_allow_html=True)
             st.markdown("<br><br>", unsafe_allow_html=True)
 
             if st.session_state.results_df.empty:
@@ -110,7 +123,7 @@ class PromptHistoryApp:
             col1, col2 = st.columns([2, 8])
 
             with col1:
-                with st.container():
+                with st.container(border=True):
                     st.markdown("<div class='filter-label'>Type 선택</div>", unsafe_allow_html=True)
                     type_options = ["전체"] + st.session_state.results_df['type'].unique().tolist()
                     selected_types = st.multiselect("Type 선택", type_options, default=st.session_state.selected_types, label_visibility='hidden')
@@ -123,7 +136,7 @@ class PromptHistoryApp:
 
                 st.markdown("<div class='container-spacing'></div>", unsafe_allow_html=True)
 
-                with st.container():
+                with st.container(border=True):
                     st.markdown("<div class='filter-label'>탈옥 성공 여부 선택</div>", unsafe_allow_html=True)
                     success_options_display = ["전체", "Success", "Fail"]
                     success_options_actual = ["전체", "success", "fail"]
