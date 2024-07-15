@@ -56,8 +56,8 @@ class PromptHistoryApp:
                     font-weight: bold;
                     color: white;
                     margin-bottom: 10px;
-                    background-color: #838383;
-                    padding: 5px;
+                    background-color: #3D9DF333;
+                    padding: 10px;
                     border-radius: 5px;
                 }
                 .radio-label {
@@ -71,6 +71,7 @@ class PromptHistoryApp:
                     justify-content: flex-end;
                     margin-top: 10px;
                     margin-bottom: 10px;
+                    margin-left: 10px;
                 }
                 .spacer {
                     margin-bottom: 10px;
