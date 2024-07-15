@@ -104,7 +104,7 @@ class PromptHistoryApp:
             if 'selected_success' not in st.session_state:
                 st.session_state.selected_success = "전체"
             if 'filtered_df' not in st.session_state:
-                st.session_state.filtered_df = st.session_state.results_df
+                st.session_state.filtered_df = st.session_state.results_df.copy()
 
             success_options_display = ["전체", "Success", "Fail"]
             success_options_actual = ["전체", "success", "fail"]
@@ -165,6 +165,7 @@ class PromptHistoryApp:
 if __name__ == "__main__":
     app = PromptHistoryApp()
     app.run()
+
 
 
 
