@@ -86,6 +86,48 @@ class OWASPApp:
                 "file": "Downloadfile/2024-LLM-한국형-보안-가이드라인.pdf"
             },
             {
+                "title": "금융분야 AI 보안 가이드라인",
+                "description": "금융 분야에서 AI를 안전하게 활용하기 위한 가이드라인",
+                "image": "Images/finance_ai_guideline.jpeg",
+                "file": "Downloadfile/금융분야 AI 보안 가이드라인.pdf"
+            },
+            {
+                "title": "공공부문 초거대 AI 도입 활용가이드라인",
+                "description": "공공 부문에서 AI를 안전하게 활용하기 위한 가이드라인",
+                "image": "Images/public_sector_ai_guideline.jpeg",
+                "file": "Downloadfile/공공부문 초거대 AI 도입 활용가이드라인.pdf"
+            },
+            {
+                "title": "2022 신뢰할 수 있는 인공지능 개발 안내서",
+                "description": "신뢰할 수 있는 인공지능 시스템 개발을 위한 안내서",
+                "image": "Images/trustworthy_ai_guideline.jpeg",
+                "file": "Downloadfile/2022 신뢰할 수 있는 인공지능 개발 안내서.pdf"
+            },
+            {
+                "title": "챗GPT 등 생성형 AI 활용 보안 가이드라인",
+                "description": "챗GPT 등 생성형 AI를 안전하게 활용하기 위한 보안 가이드라인",
+                "image": "Images/chatgpt_security_guideline.jpeg",
+                "file": "Downloadfile/챗GPT 등 생성형 AI 활용 보안 가이드라인.pdf"
+            },
+            {
+                "title": "World Digital Technology Academy (WDTA) - LLM 보안 테스트 방법",
+                "description": "WDTA 관련 보안 자료",
+                "image": "Images/wdta.jpeg",
+                "file": "Downloadfile/World Digital Technology Academy (WDTA) - LLM 보안 테스트 방법.pdf"
+            },
+            {
+                "title": "LLM AI 보안 및 거버넌스 체크리스트 (OWASP)",
+                "description": "LLM AI 보안 및 거버넌스를 위한 체크리스트",
+                "image": "Images/owasp_checklist.jpeg",
+                "file": "Downloadfile/LLM AI 보안 및 거버넌스 체크리스트(OWASP).pdf"
+            },
+            {
+                "title": "Guidelines for Secure AI System Development",
+                "description": "AI 시스템을 안전하게 개발하기 위한 가이드라인",
+                "image": "Images/secure_ai_guideline.jpeg",
+                "file": "Downloadfile/Guidelines for secure AI system development.pdf"
+            },
+            {
                 "title": "한국어 탈옥 프롬프트 데이터셋 (2024-07-17 ver)",
                 "description": "한국어 탈옥 프롬프트 공격의 실효성을 확인할 수 있는 데이터셋 (지속 업데이트 예정)",
                 "image": "Images/checklist.png",
