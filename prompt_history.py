@@ -106,9 +106,6 @@ class PromptHistoryApp:
             if 'filtered_df' not in st.session_state:
                 st.session_state.filtered_df = st.session_state.results_df.copy()
 
-            success_options_display = ["전체", "Success", "Fail"]
-            success_options_actual = ["전체", "success", "fail"]
-
             # 레이아웃 설정
             col1, col2 = st.columns([2, 8])
 
@@ -128,10 +125,13 @@ class PromptHistoryApp:
 
                 with st.container(border=True):
                     st.markdown("<div class='filter-label'>탈옥 성공 여부 선택</div>", unsafe_allow_html=True)
-                    selected_success_display = st.radio("탈옥 성공 여부 선택", success_options_display, index=success_options_display.index(st.session_state.selected_success), label_visibility='hidden')
-                    st.session_state.selected_success = success_options_actual[success_options_display.index(selected_success_display)]
-                    st.session_state.filtered_df = filter_data(st.session_state.results_df, st.session_state.selected_types, st.session_state.selected_success)
-
+                    success_options_display = ["전체", "Success", "Fail"]
+                    success_options_actual = ["전체", "success", "fail"]
+                    selected_success_display = st.radio("", success_options_display, index=success_options_actual.index(st.session_state.selected_success))
+                    selected_success_actual = success_options_actual[success_options_display.index(selected_success_display)]
+                    st.session_state.selected_success = selected_success_actual
+                    st.markdown('<style>.stRadio > div {display: flex; flex-direction: column;}</style>', unsafe_allow_html=True)
+                    
             # 데이터 표시
             if st.session_state.filtered_df is not None:
                 if st.session_state.filtered_df.empty:
