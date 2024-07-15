@@ -110,7 +110,7 @@ class PromptHistoryApp:
             col1, col2 = st.columns([2, 8])
 
             with col1:
-                with st.container(border=True):
+                with st.container():
                     st.markdown("<div class='filter-label'>Type 선택</div>", unsafe_allow_html=True)
                     type_options = ["전체"] + st.session_state.results_df['type'].unique().tolist()
                     selected_types = st.multiselect("Type 선택", type_options, default=st.session_state.selected_types, label_visibility='hidden')
@@ -123,11 +123,14 @@ class PromptHistoryApp:
 
                 st.markdown("<div class='container-spacing'></div>", unsafe_allow_html=True)
 
-                with st.container(border=True):
+                with st.container():
                     st.markdown("<div class='filter-label'>탈옥 성공 여부 선택</div>", unsafe_allow_html=True)
                     success_options_display = ["전체", "Success", "Fail"]
                     success_options_actual = ["전체", "success", "fail"]
-                    selected_success_display = st.radio("탈옥 성공 여부 선택", success_options_display, index=success_options_display.index(st.session_state.selected_success), label_visibility='hidden')
+                    # 선택한 값이 리스트에 있는지 확인 후, 없다면 기본값 설정
+                    if st.session_state.selected_success not in success_options_actual:
+                        st.session_state.selected_success = "전체"
+                    selected_success_display = st.radio("탈옥 성공 여부 선택", success_options_display, index=success_options_actual.index(st.session_state.selected_success), label_visibility='hidden')
                     st.session_state.selected_success = success_options_actual[success_options_display.index(selected_success_display)]
                     st.session_state.filtered_df = filter_data(st.session_state.results_df, st.session_state.selected_types, st.session_state.selected_success)
 
