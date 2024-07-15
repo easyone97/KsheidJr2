@@ -123,7 +123,7 @@ class PromptHistoryApp:
                             st.session_state.filtered_df = st.session_state.filtered_df[st.session_state.filtered_df['type'].isin(st.session_state.selected_types)]
                         if st.session_state.selected_success != "전체":
                             st.session_state.filtered_df = st.session_state.filtered_df[st.session_state.filtered_df['탈옥성공여부'] == st.session_state.selected_success]
-                st.markdown("</div>", unsafe_allow_html=True)
+                    st.markdown("</div>", unsafe_allow_html=True)
 
                 st.markdown("<div class='container-spacing'></div>", unsafe_allow_html=True)
 
