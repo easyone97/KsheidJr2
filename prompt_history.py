@@ -105,7 +105,6 @@ class PromptHistoryApp:
                 with st.container(border=True):
                     st.markdown("<div class='filter-label'>Type 선택</div>", unsafe_allow_html=True)
                     type_options = ["전체"] + st.session_state.results_df['type'].unique().tolist()
-                
                     selected_types = st.multiselect("", type_options, default=st.session_state.selected_types)
                     st.markdown("<div class='apply-button'>", unsafe_allow_html=True)
                     if st.button("적용", key="apply_button"):
@@ -129,9 +128,16 @@ class PromptHistoryApp:
                     st.session_state.selected_success = selected_success_actual
                     st.markdown('<style>.stRadio > div {display: flex; flex-direction: column;}</style>', unsafe_allow_html=True)
 
-        if st.session_state.filtered_df is not None:
+            # 선택된 필터에 따라 데이터 필터링
+            filtered_df = st.session_state.filtered_df.copy()
+            if "전체" not in st.session_state.selected_types:
+                filtered_df = filtered_df[filtered_df['type'].isin(st.session_state.selected_types)]
+            if st.session_state.selected_success != "전체":
+                filtered_df = filtered_df[filtered_df['탈옥성공여부'] == st.session_state.selected_success]
+
+            # Streamlit 기본 테이블 렌더링
             with col2:
-                st.dataframe(st.session_state.filtered_df.style.set_table_styles(
+                st.dataframe(filtered_df.style.set_table_styles(
                     [{
                         'selector': 'th',
                         'props': [
