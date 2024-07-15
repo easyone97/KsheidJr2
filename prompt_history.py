@@ -162,7 +162,4 @@ class PromptHistoryApp:
 
 if __name__ == "__main__":
     app = PromptHistoryApp()
-    app.run()
-
-
-        
+    app.run()   
