@@ -103,6 +103,8 @@ class PromptHistoryApp:
                 st.session_state.selected_types = ["전체"]
             if 'selected_success' not in st.session_state:
                 st.session_state.selected_success = "전체"
+            if 'filtered_df' not in st.session_state:
+                st.session_state.filtered_df = st.session_state.results_df
 
             success_options_display = ["전체", "Success", "Fail"]
             success_options_actual = ["전체", "success", "fail"]
@@ -128,9 +130,10 @@ class PromptHistoryApp:
                     st.markdown("<div class='filter-label'>탈옥 성공 여부 선택</div>", unsafe_allow_html=True)
                     selected_success_display = st.radio("탈옥 성공 여부 선택", success_options_display, index=success_options_display.index(st.session_state.selected_success), label_visibility='hidden')
                     st.session_state.selected_success = success_options_actual[success_options_display.index(selected_success_display)]
+                    st.session_state.filtered_df = filter_data(st.session_state.results_df, st.session_state.selected_types, st.session_state.selected_success)
 
             # 데이터 표시
-            if 'filtered_df' in st.session_state and st.session_state.filtered_df is not None:
+            if st.session_state.filtered_df is not None:
                 if st.session_state.filtered_df.empty:
                     st.warning("No data available to display.")
                 else:
@@ -162,6 +165,7 @@ class PromptHistoryApp:
 if __name__ == "__main__":
     app = PromptHistoryApp()
     app.run()
+
 
 
 
