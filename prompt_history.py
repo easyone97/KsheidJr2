@@ -1,7 +1,7 @@
 import pandas as pd
 import streamlit as st
 
-# 독립적인 함수로 분리하여 캐시 처리
+# 데이터 로드를 캐시 처리
 @st.cache_data
 def load_results(filename):
     return pd.read_csv(filename)
@@ -113,6 +113,11 @@ class PromptHistoryApp:
                     type_options = ["전체"] + st.session_state.results_df['type'].unique().tolist()
                     selected_types = st.multiselect("", type_options, default=st.session_state.selected_types)
                     st.session_state.selected_types = selected_types
+                    st.markdown("<div class='apply-button'>", unsafe_allow_html=True)
+                    if st.button("적용", key="apply_button"):
+                        st.session_state.filtered_df = filter_data(st.session_state.results_df, st.session_state.selected_types, st.session_state.selected_success)
+                    st.markdown("</div>", unsafe_allow_html=True)
+
 
                 st.markdown("<div class='container-spacing'></div>", unsafe_allow_html=True)
 
@@ -124,11 +129,6 @@ class PromptHistoryApp:
                     selected_success_actual = success_options_actual[success_options_display.index(selected_success_display)]
                     st.session_state.selected_success = selected_success_actual
                     st.markdown('<style>.stRadio > div {display: flex; flex-direction: column;}</style>', unsafe_allow_html=True)
-
-                st.markdown("<div class='apply-button'>", unsafe_allow_html=True)
-                if st.button("적용", key="apply_button"):
-                    st.session_state.filtered_df = filter_data(st.session_state.results_df, st.session_state.selected_types, st.session_state.selected_success)
-                st.markdown("</div>", unsafe_allow_html=True)
 
             # 데이터 표시
             if 'filtered_df' in st.session_state and st.session_state.filtered_df is not None:
@@ -163,5 +163,6 @@ class PromptHistoryApp:
 if __name__ == "__main__":
     app = PromptHistoryApp()
     app.run()
+
 
         
