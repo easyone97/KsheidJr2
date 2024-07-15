@@ -15,6 +15,13 @@ class PromptHistoryApp:
         self.parent_app = parent_app
 
     def run(self):
+        if 'results_df' not in st.session_state:
+            st.session_state.results_df = load_results('Downloadfile/final_result_test.csv')
+            st.session_state.filtered_df = st.session_state.results_df
+        if 'selected_types' not in st.session_state:
+            st.session_state.selected_types = ["전체"]
+        if 'selected_success' not in st.session_state:
+            st.session_state.selected_success = "전체"
         # 로딩 공간을 유지하기 위한 placeholder 생성
         placeholder = st.empty()
 
