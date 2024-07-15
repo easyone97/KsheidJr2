@@ -102,12 +102,9 @@ class PromptHistoryApp:
             with col1:
                 with st.container(border=True):
                     st.markdown("<div class='filter-label'>Type 선택</div>", unsafe_allow_html=True)
-                    type_options = ["전체"] + results_df['type'].unique().tolist()
+                    type_options = ["전체"] + st.session_state.results_df['type'].unique().tolist()
                     selected_types = st.multiselect("", type_options, default=st.session_state.selected_types)
-                    st.markdown("<div class='apply-button'>", unsafe_allow_html=True)
-                    if st.button("적용", key="apply_button"):
-                        st.session_state.selected_types = selected_types
-                    st.markdown("</div>", unsafe_allow_html=True)
+                    st.session_state.selected_types = selected_types
 
                 st.markdown("<div class='container-spacing'></div>", unsafe_allow_html=True)
 
@@ -120,12 +117,15 @@ class PromptHistoryApp:
                     st.session_state.selected_success = selected_success_actual
                     st.markdown('<style>.stRadio > div {display: flex; flex-direction: column;}</style>', unsafe_allow_html=True)
 
-            # 선택된 필터에 따라 데이터 필터링
-            filtered_df = results_df.copy()
-            if "전체" not in st.session_state.selected_types:
-                filtered_df = filtered_df[filtered_df['type'].isin(st.session_state.selected_types)]
-            if st.session_state.selected_success != "전체":
-                filtered_df = filtered_df[filtered_df['탈옥성공여부'] == st.session_state.selected_success]
+                st.markdown("<div class='apply-button'>", unsafe_allow_html=True)
+                if st.button("적용", key="apply_button"):
+                    # 선택된 필터에 따라 데이터 필터링
+                    st.session_state.filtered_df = st.session_state.results_df.copy()
+                    if "전체" not in st.session_state.selected_types:
+                        st.session_state.filtered_df = st.session_state.filtered_df[st.session_state.filtered_df['type'].isin(st.session_state.selected_types)]
+                    if st.session_state.selected_success != "전체":
+                        st.session_state.filtered_df = st.session_state.filtered_df[st.session_state.filtered_df['탈옥성공여부'] == st.session_state.selected_success]
+                st.markdown("</div>", unsafe_allow_html=True)
 
             # 필터링된 데이터 표시
             if st.session_state.filtered_df is not None:
