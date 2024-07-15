@@ -105,17 +105,17 @@ class PromptHistoryApp:
                 with st.container(border=True):
                     st.markdown("<div class='filter-label'>Type 선택</div>", unsafe_allow_html=True)
                     # 데이터 로딩 전 기본 옵션을 사용
-                    if st.session_state.results_df is None:
-                        type_options = ["전체"]
-                    else:
-                        type_options = ["전체"] + st.session_state.results_df['type'].unique().tolist()
+                    type_options = ["전체"]
+                    if st.session_state.results_df is not None:
+                        type_options += st.session_state.results_df['type'].unique().tolist()
                 
                     selected_types = st.multiselect("", type_options, default=st.session_state.selected_types)
                     st.markdown("<div class='apply-button'>", unsafe_allow_html=True)
                     if st.button("적용", key="apply_button"):
                         st.session_state.selected_types = selected_types
                         # 여기서 데이터 로딩
-                        st.session_state.results_df = load_results('Downloadfile/final_result_test.csv')
+                        if st.session_state.results_df is None:
+                            st.session_state.results_df = load_results('Downloadfile/final_result_test.csv')
                         st.session_state.filtered_df = st.session_state.results_df.copy()
                         if "전체" not in st.session_state.selected_types:
                             st.session_state.filtered_df = st.session_state.filtered_df[st.session_state.filtered_df['type'].isin(st.session_state.selected_types)]
@@ -142,9 +142,9 @@ class PromptHistoryApp:
                 if st.session_state.selected_success != "전체":
                     filtered_df = filtered_df[filtered_df['탈옥성공여부'] == st.session_state.selected_success]
 
-            # Streamlit 기본 테이블 렌더링
+           if st.session_state.filtered_df is not None:
             with col2:
-                st.dataframe(filtered_df.style.set_table_styles(
+                st.dataframe(st.session_state.filtered_df.style.set_table_styles(
                     [{
                         'selector': 'th',
                         'props': [
@@ -167,7 +167,6 @@ class PromptHistoryApp:
                     'color': 'black',
                     'border': '1.3px solid black'
                 }), height=800, use_container_width=True)
-
 if __name__ == "__main__":
     app = PromptHistoryApp()
     app.run()
