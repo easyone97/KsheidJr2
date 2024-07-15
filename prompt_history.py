@@ -6,7 +6,6 @@ import streamlit as st
 def load_results(filename):
     return pd.read_csv(filename)
 
-# 데이터 필터링 함수
 def filter_data(df, selected_types, selected_success):
     filtered_df = df.copy()
     if "전체" not in selected_types:
@@ -14,13 +13,6 @@ def filter_data(df, selected_types, selected_success):
     if selected_success != "전체":
         filtered_df = filtered_df[filtered_df['탈옥성공여부'] == selected_success]
     return filtered_df
-
-# 지연 로딩을 위한 함수
-def get_type_options(df, query=""):
-    if query:
-        return df['type'][df['type'].str.contains(query, case=False)].unique().tolist()
-    else:
-        return df['type'].unique().tolist()
 
 class PromptHistoryApp:
     def __init__(self):
@@ -112,16 +104,19 @@ class PromptHistoryApp:
         col1, col2 = st.columns([2, 8])
 
         with col1:
-            with st.container():
+            with st.container(border=True):
                 st.markdown("<div class='filter-label'>Type 선택</div>", unsafe_allow_html=True)
-                search_query = st.text_input("검색", "")
-                type_options = ["전체"] + get_type_options(st.session_state.results_df, search_query)
+                type_options = ["전체"] + st.session_state.results_df['type'].unique().tolist()
                 selected_types = st.multiselect("", type_options, default=st.session_state.selected_types)
                 st.session_state.selected_types = selected_types
+                st.markdown("<div class='apply-button'>", unsafe_allow_html=True)
+                if st.button("적용", key="apply_button"):
+                    st.session_state.filtered_df = filter_data(st.session_state.results_df, st.session_state.selected_types, st.session_state.selected_success)
+                st.markdown("</div>", unsafe_allow_html=True)
 
             st.markdown("<div class='container-spacing'></div>", unsafe_allow_html=True)
 
-            with st.container():
+            with st.container(border=True):
                 st.markdown("<div class='filter-label'>탈옥 성공 여부 선택</div>", unsafe_allow_html=True)
                 success_options_display = ["전체", "Success", "Fail"]
                 success_options_actual = ["전체", "success", "fail"]
@@ -130,10 +125,7 @@ class PromptHistoryApp:
                 st.session_state.selected_success = selected_success_actual
                 st.markdown('<style>.stRadio > div {display: flex; flex-direction: column;}</style>', unsafe_allow_html=True)
 
-            st.markdown("<div class='apply-button'>", unsafe_allow_html=True)
-            if st.button("적용", key="apply_button"):
-                st.session_state.filtered_df = filter_data(st.session_state.results_df, st.session_state.selected_types, st.session_state.selected_success)
-            st.markdown("</div>", unsafe_allow_html=True)
+            
 
         # 데이터 표시
         if st.session_state.filtered_df is not None:
@@ -165,5 +157,6 @@ class PromptHistoryApp:
 if __name__ == "__main__":
     app = PromptHistoryApp()
     app.run()
+
 
 
