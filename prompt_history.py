@@ -134,39 +134,32 @@ class PromptHistoryApp:
                     st.session_state.selected_success = selected_success_actual
                     st.markdown('<style>.stRadio > div {display: flex; flex-direction: column;}</style>', unsafe_allow_html=True)
 
-            # 선택된 필터에 따라 데이터 필터링
-            if st.session_state.filtered_df is not None:
-                filtered_df = st.session_state.filtered_df.copy()
-                if "전체" not in st.session_state.selected_types:
-                    filtered_df = filtered_df[filtered_df['type'].isin(st.session_state.selected_types)]
-                if st.session_state.selected_success != "전체":
-                    filtered_df = filtered_df[filtered_df['탈옥성공여부'] == st.session_state.selected_success]
-
            if st.session_state.filtered_df is not None:
-            with col2:
-                st.dataframe(st.session_state.filtered_df.style.set_table_styles(
-                    [{
-                        'selector': 'th',
-                        'props': [
-                            ('background-color', '#4CAF50'),
-                            ('color', 'black'),
-                            ('font-family', 'Arial, sans-serif'),
+                with col2:
+                    st.dataframe(st.session_state.filtered_df.style.set_table_styles(
+                        [{
+                            'selector': 'th',
+                            'props': [
+                                ('background-color', '#4CAF50'),
+                                ('color', 'black'),
+                                ('font-family', 'Arial, sans-serif'),
                             ('font-size', '16px')
-                        ]
-                    },
-                    {
-                        'selector': 'td, th, .row_heading, .index_name',
-                        'props': [
-                            ('border', '2px solid #4CAF50'),
-                            ('background-color', 'white'),
-                            ('color', 'black')
-                        ]
-                    }]
-                ).set_properties(**{
-                    'background-color': 'white',
-                    'color': 'black',
-                    'border': '1.3px solid black'
-                }), height=800, use_container_width=True)
+                            ]
+                        },
+                        {
+                            'selector': 'td, th, .row_heading, .index_name',
+                            'props': [
+                                ('border', '2px solid #4CAF50'),
+                                ('background-color', 'white'),
+                                ('color', 'black')
+                            ]
+                        }]
+                    ).set_properties(**{
+                        'background-color': 'white',
+                        'color': 'black',
+                        'border': '1.3px solid black'
+                    }), height=800, use_container_width=True)
+                    
 if __name__ == "__main__":
     app = PromptHistoryApp()
     app.run()
