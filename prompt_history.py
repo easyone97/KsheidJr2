@@ -128,30 +128,31 @@ class PromptHistoryApp:
                 filtered_df = filtered_df[filtered_df['탈옥성공여부'] == st.session_state.selected_success]
 
             # 필터링된 데이터 표시
-            with col2:
-                st.dataframe(filtered_df.style.set_table_styles(
-                    [{
-                        'selector': 'th',
-                        'props': [
-                            ('background-color', '#4CAF50'),
-                            ('color', 'black'),
-                            ('font-family', 'Arial, sans-serif'),
-                            ('font-size', '16px')
-                        ]
-                    },
-                    {
-                        'selector': 'td, th, .row_heading, .index_name',
-                        'props': [
-                            ('border', '2px solid #4CAF50'),
-                            ('background-color', 'white'),
-                            ('color', 'black')
-                        ]
-                    }]
-                ).set_properties(**{
-                    'background-color': 'white',
-                    'color': 'black',
-                    'border': '1.3px solid black'
-                }), height=800, use_container_width=True)
+            if st.session_state.filtered_df is not None:
+                with col2:
+                    st.dataframe(st.session_state.filtered_df.style.set_table_styles(
+                        [{
+                            'selector': 'th',
+                            'props': [
+                                ('background-color', '#4CAF50'),
+                                ('color', 'black'),
+                                ('font-family', 'Arial, sans-serif'),
+                                ('font-size', '16px')
+                            ]
+                        },
+                        {
+                            'selector': 'td, th, .row_heading, .index_name',
+                            'props': [
+                                ('border', '2px solid #4CAF50'),
+                                ('background-color', 'white'),
+                                ('color', 'black')
+                            ]
+                        }]
+                    ).set_properties(**{
+                        'background-color': 'white',
+                        'color': 'black',
+                        'border': '1.3px solid black'
+                    }), height=800, use_container_width=True)
 
 if __name__ == "__main__":
     app = PromptHistoryApp()
