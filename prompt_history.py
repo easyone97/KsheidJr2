@@ -98,12 +98,6 @@ class PromptHistoryApp:
                 st.warning("No data available to display.")
                 return
 
-            # 초기 선택 상태 설정
-            if 'selected_types' not in st.session_state:
-                st.session_state.selected_types = ["전체"]
-            if 'selected_success' not in st.session_state:
-                st.session_state.selected_success = "전체"
-
             # 레이아웃 설정
             col1, col2 = st.columns([2, 8])
 
@@ -134,11 +128,12 @@ class PromptHistoryApp:
                     st.markdown('<style>.stRadio > div {display: flex; flex-direction: column;}</style>', unsafe_allow_html=True)
 
             # 선택된 필터에 따라 데이터 필터링
-            filtered_df = results_df.copy()
-            if "전체" not in st.session_state.selected_types:
-                filtered_df = filtered_df[filtered_df['type'].isin(st.session_state.selected_types)]
-            if st.session_state.selected_success != "전체":
-                filtered_df = filtered_df[filtered_df['탈옥성공여부'] == st.session_state.selected_success]
+            if st.session_state.filtered_df is not None:
+                filtered_df = st.session_state.filtered_df.copy()
+                if "전체" not in st.session_state.selected_types:
+                    filtered_df = filtered_df[filtered_df['type'].isin(st.session_state.selected_types)]
+                if st.session_state.selected_success != "전체":
+                    filtered_df = filtered_df[filtered_df['탈옥성공여부'] == st.session_state.selected_success]
 
             # Streamlit 기본 테이블 렌더링
             with col2:
