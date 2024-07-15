@@ -113,10 +113,10 @@ class PromptHistoryApp:
                     type_options = ["전체"] + st.session_state.results_df['type'].unique().tolist()
                     selected_types = st.multiselect("", type_options, default=st.session_state.selected_types)
                     st.session_state.selected_types = selected_types
-                    st.markdown("<div class='apply-button'>", unsafe_allow_html=True)
-                    if st.button("적용", key="apply_button"):
-                        st.session_state.filtered_df = filter_data(st.session_state.results_df, st.session_state.selected_types, st.session_state.selected_success)
-                    st.markdown("</div>", unsafe_allow_html=True)
+                st.markdown("<div class='apply-button'>", unsafe_allow_html=True)
+                if st.button("적용", key="apply_button"):
+                    st.session_state.filtered_df = filter_data(st.session_state.results_df, st.session_state.selected_types, st.session_state.selected_success)
+                st.markdown("</div>", unsafe_allow_html=True)
 
 
                 st.markdown("<div class='container-spacing'></div>", unsafe_allow_html=True)
