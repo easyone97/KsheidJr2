@@ -73,6 +73,12 @@ class OWASPApp:
 
         # 참고자료 항목들
         references = [
+             {
+                "title": "한국어 탈옥 프롬프트 데이터셋 (2024-07-17 ver)",
+                "description": "한국어 탈옥 프롬프트 공격의 실효성을 확인할 수 있는 데이터셋 (지속 업데이트 예정)",
+                "image": "Images/checklist.png",
+                "file": "Downloadfile/jailbreakPrompt.csv"
+            },
             {
                 "title": "OWASP Top 10 for LLM",
                 "description": "OWASP에서 발표한 LLM 애플리케이션에 영향을 미치는 가장 치명적인 취약점 상위 10가지",
@@ -126,12 +132,6 @@ class OWASPApp:
                 "description": "AI 시스템을 안전하게 개발하기 위한 가이드라인",
                 "image": "Images/secure_ai_guideline.jpeg",
                 "file": "Downloadfile/Guidelines for secure AI system development.pdf"
-            },
-            {
-                "title": "한국어 탈옥 프롬프트 데이터셋 (2024-07-17 ver)",
-                "description": "한국어 탈옥 프롬프트 공격의 실효성을 확인할 수 있는 데이터셋 (지속 업데이트 예정)",
-                "image": "Images/checklist.png",
-                "file": "Downloadfile/jailbreakPrompt.csv"
             }
         ]
 
